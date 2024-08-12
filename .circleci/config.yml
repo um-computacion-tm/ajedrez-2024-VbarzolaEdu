@@ -11,5 +11,5 @@ jobs:
             pip install -r requirements.txt
       - run:
           name: Run tests
-          command: |
+          command: 
             coverage run -m unittest && coverage xml
