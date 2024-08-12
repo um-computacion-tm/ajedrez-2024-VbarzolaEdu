@@ -18,9 +18,6 @@ jobs:
           name: Run Tests
           command: coverage run -m unittest && coverage xml && coverage report -m
       - run:
-          name: Run tests
-          command: 
-            coverage run -m unittest && coverage xml
           name: Upload Code Climate coverage report
           command: |
             ./cc-test-reporter after-build
