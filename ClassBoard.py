@@ -1,4 +1,11 @@
-from ClassChess import Rook,Horse,Bishop,Queen,King,Pawn,Piece #importar la clase Rook y pieces de ClassChess.py
+from ClassChess import chess
+from ClassRook import Rook
+from ClassHorse import Horse 
+from ClassBishop import Bishop
+from ClassQueen import Queen
+from ClassKing import King 
+from ClassPawn import Pawn
+from ClassPiece import piece #importar la clase Rook y pieces de ClassChess.py
 
 class board():
     def __init__(self, nombre, color):
