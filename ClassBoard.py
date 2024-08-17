@@ -1,4 +1,3 @@
-from ClassChess import chess
 from ClassRook import Rook
 from ClassHorse import Horse 
 from ClassBishop import Bishop
@@ -8,7 +7,7 @@ from ClassPawn import Pawn
 from ClassPiece import piece #importar la clase Rook y pieces de ClassChess.py
 
 class board():
-    def __init__(self, nombre, color):
+    def __init__(self):
         #los indices son E8 por ejemplo. Va de 1-8 y a-h
         self.__positions__= []
         #LLenado de matriz. Primero se crean 8 filas y luego 8 columnas
@@ -37,10 +36,8 @@ class board():
         for i in range(8):
             self.__positions__[1][i]= Pawn("Black")
             self.__positions__[6][i]= Pawn("White")
-        self.__nombre__ = nombre
-        self.__color__ = color
-
         #metodo para obtener la posicion
         
     def get_position(self, from_row, from_col):
         return self.__positions__[from_row][from_col]
+    
