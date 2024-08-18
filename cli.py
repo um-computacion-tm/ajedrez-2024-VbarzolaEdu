@@ -1,21 +1,24 @@
 #aca tienen que estar los inpusts y prints
 
 ##pygame para darle graficos al tablero
-from ClassChess import chess
+from ClassChess import Chess
 
 def main():
-    chess == chess()
+    chess_instance = Chess()
     while True:
-        play(chess)
+        play(chess_instance)
 
-def play(chess):
-    
+
+def play(chess_instance):
+    #print(chess.show_board())
     try:
-        print("turn: ", chess.turn)
-        from_row= int(input("from_row"))
-        from_col= int(input("from_col"))
-        to_row= int(input("to_row"))
-        to_col= int(input("to_col"))
+        print("turn: ", chess_instance.turn)
+        from_row= int(input("From row "))
+        from_col= int(input("From col "))
+        to_row= int(input("To row "))
+        to_col= int(input("To col "))
+
+        chess_instance.move(from_row, from_col, to_row, to_col)
 
     except Exception as e:
         print("Error")
