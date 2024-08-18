@@ -1,4 +1,4 @@
-from ClassPiece import piece
+from ClassPiece import Piece
 
-class Queen(piece):
+class Queen(Piece):
     pass

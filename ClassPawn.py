@@ -1,4 +1,4 @@
-from ClassPiece import piece
+from ClassPiece import Piece
 
-class Pawn(piece):
+class Pawn(Piece):
     pass

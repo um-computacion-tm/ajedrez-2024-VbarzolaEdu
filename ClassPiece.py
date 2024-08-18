@@ -1,5 +1,4 @@
-class piece():
-    def __init__(self, nombre, color):
-        self.__nombre__ = nombre
+class Piece:
+    def __init__(self,color):
         self.__color__ = color
-        pass
+        

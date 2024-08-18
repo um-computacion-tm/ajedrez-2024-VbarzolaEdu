@@ -1,4 +1,4 @@
-from ClassPiece import piece
+from ClassPiece import Piece
 
-class Bishop(piece):
+class Bishop(Piece):
     pass

@@ -4,16 +4,16 @@ from ClassBishop import Bishop
 from ClassQueen import Queen
 from ClassKing import King 
 from ClassPawn import Pawn
-from ClassPiece import piece #importar la clase Rook y pieces de ClassChess.py
+from ClassPiece import Piece #importar la clase Rook y pieces de ClassChess.py
 
-class board():
+class Board():
     def __init__(self):
         #los indices son E8 por ejemplo. Va de 1-8 y a-h
         self.__positions__= []
         #LLenado de matriz. Primero se crean 8 filas y luego 8 columnas
-        for i in range(8):
+        for _ in range(8):
             col=[]
-            for j in range(8):
+            for _ in range(8):
                 col.append(None)
             self.__positions__.append(col)
         self.__positions__[0][0]= Rook("Black") #black
@@ -38,6 +38,6 @@ class board():
             self.__positions__[6][i]= Pawn("White")
         #metodo para obtener la posicion
         
-    def get_position(self, from_row, from_col):
-        return self.__positions__[from_row][from_col]
+    def get_piece(self,row,col):
+        return self.__positions__[row][col]
     

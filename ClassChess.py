@@ -1,9 +1,9 @@
-from ClassBoard import board
+from ClassBoard import Board
 
-class chess():
-    def __inint__(self):
-        self.__board__= board()
-        self.__turn__="White"
+class Chess():
+    def __init__(self):
+        self.__board__= Board()
+        self.__turn__= "White"
         #metodo moverse
         #conecta con cli y usuarios, es la class que engloba o conecta board y piece
 
@@ -17,7 +17,7 @@ class chess():
         #cambio de turnos
         
 
-        piece = self.__board__.get_position(from_row, from_col)
+        piece = self.__board__.get_piece(from_row, from_col)
         #debe validar que las coordenadas sean correctas primero en un metodo distinto de move
         self.change_turn()
 
