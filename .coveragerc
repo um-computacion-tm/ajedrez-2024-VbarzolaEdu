@@ -1,6 +1,7 @@
 [run]
-source = juego
-        test
+source = 
+    juego
+    test
 
 omit =
     env/*
