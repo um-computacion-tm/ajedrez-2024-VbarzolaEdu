@@ -43,6 +43,15 @@ class TestBoard(unittest.TestCase):
         for i in range(2,6):
             for j in range(8):
                 self.assertIsNone(self.board.get_piece(i,j))
+    
+#test para comprobar dimensiones de la matriz
+
+    def test_board_dimensions(self):
+        matrix = self.board.__positions__  # Asumiendo que tienes un atributo matrix
+        self.assertEqual(len(matrix), 8)
+        for j in matrix:
+            self.assertEqual(len(j), 8)
+
 
 
 if __name__ == '__main__':
