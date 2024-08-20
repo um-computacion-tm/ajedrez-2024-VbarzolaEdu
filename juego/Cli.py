@@ -5,7 +5,7 @@ from juego.ClassChess import Chess
 
 def main():
     chess_instance = Chess()
-    while True:
+    while Chess.is_playing():
         play(chess_instance)
 
 
@@ -22,7 +22,9 @@ def play(chess_instance):
 
     except Exception as e:
         print("Error")
-        
+
+def is_playing():
+    return True        
 
 if __name__ == "__main__":
     main()

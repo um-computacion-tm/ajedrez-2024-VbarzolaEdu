@@ -17,6 +17,7 @@ class TestChess(unittest.TestCase):
         self.assertIsInstance(self.Board.get_piece(2, 0), Rook)
         self.assertIsNone(self.Board.get_piece(0, 0))
         self.assertEqual(self.chess.turn, "Black")
+    
 
     
 

@@ -30,6 +30,9 @@ class Chess():
             self.__turn__ = "Black"
         else:
             self.__turn__ = "White"
+    
+    def is_playing():
+        return True    
 
 
 
