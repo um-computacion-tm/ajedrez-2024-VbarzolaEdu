@@ -1,11 +1,11 @@
-from juego.ClassBoard import Board
-from juego.ClassRook import Rook
-from juego.ClassHorse import Horse
-from juego.ClassBishop import Bishop
-from juego.ClassQueen import Queen
-from juego.ClassKing import King
-from juego.ClassPawn import Pawn
-from juego.ClassPiece import Piece
+from juego.board import Board
+from juego.rook import Rook
+from juego.horse import Horse
+from juego.bishop import Bishop
+from juego.queen import Queen
+from juego.king import King
+from juego.pawn import Pawn
+from juego.piece import Piece
 
 import unittest
 
@@ -52,6 +52,22 @@ class TestBoard(unittest.TestCase):
         for j in matrix:
             self.assertEqual(len(j), 8)
 
+
+    def test_str_board(self):
+        board = Board()
+        self.assertEqual(
+            str(board),
+            (
+                "♖      ♖\n"
+                "        \n"
+                "        \n"
+                "        \n"
+                "        \n"
+                "        \n"
+                "        \n"
+                "♜      ♜\n"
+            )
+        )
 
 
 if __name__ == '__main__':

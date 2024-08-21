@@ -1,10 +1,10 @@
-from juego.ClassRook import Rook
-from juego.ClassHorse import Horse 
-from juego.ClassBishop import Bishop
-from juego.ClassQueen import Queen
-from juego.ClassKing import King 
-from juego.ClassPawn import Pawn
-from juego.ClassPiece import Piece #importar la clase Rook y pieces de ClassChess.py
+from juego.rook import Rook
+from juego.horse import Horse 
+from juego.bishop import Bishop
+from juego.queen import Queen
+from juego.king import King 
+from juego.pawn import Pawn
+from juego.piece import Piece #importar la clase Rook y pieces de ClassChess.py
 
 class Board():
     def __init__(self):
@@ -37,6 +37,19 @@ class Board():
             self.__positions__[1][i]= Pawn("Black")
             self.__positions__[6][i]= Pawn("White")
         #metodo para obtener la posicion
+
+
+    def __str__(self):
+        board_str = ""
+        for row in self.__positions__:
+            for cell in row:
+                if cell is not None:
+                    board_str += str(cell)
+                else:
+                    board_str += " "
+            board_str += "\n"
+        return board_str
+    
         
     def get_piece(self,row,col):
         return self.__positions__[row][col]

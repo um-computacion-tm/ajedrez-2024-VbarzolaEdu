@@ -1,4 +1,4 @@
-from juego.ClassBoard import Board
+from juego.board import Board
 
 class Chess():
     def __init__(self):
@@ -6,7 +6,10 @@ class Chess():
         self.__turn__= "White"
         #metodo moverse
         #conecta con cli y usuarios, es la class que engloba o conecta board y piece
-
+       
+    def is_playing():
+        return True    
+    
     def move(self, from_row, from_col, to_row, to_col):
        
         #validar que la posicion de origen sea valida
@@ -31,8 +34,9 @@ class Chess():
         else:
             self.__turn__ = "White"
     
-    def is_playing():
-        return True    
+    def show_board(self):
+        return str(self.__board__)
+ 
 
 
 

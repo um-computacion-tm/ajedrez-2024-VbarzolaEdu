@@ -1,8 +1,8 @@
-from juego.ClassChess import Chess
-from juego.ClassBoard import Board
-from juego.ClassRook import Rook
-from juego.ClassBishop import Bishop
-from juego.ClassHorse import Horse
+from juego.chess import Chess
+from juego.board import Board
+from juego.rook import Rook
+from juego.bishop import Bishop
+from juego.horse import Horse
 import unittest
 
 class TestChess(unittest.TestCase):
