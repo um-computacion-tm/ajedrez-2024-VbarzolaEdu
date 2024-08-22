@@ -52,22 +52,22 @@ class TestBoard(unittest.TestCase):
         for j in matrix:
             self.assertEqual(len(j), 8)
 
-
-    """def test_str_board(self):
+#test para print tablero
+    def test_str_board(self):
         board = Board()
         self.assertEqual(
             str(board),
             (
-                "♖      ♖\n"
-                "        \n"
-                "        \n"
-                "        \n"
-                "        \n"
-                "        \n"
-                "        \n"
-                "♜      ♜\n"
+                " ♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖\n"
+                " ♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙\n"
+                "                \n"
+                "                \n"
+                "                \n"
+                "                \n"
+                " ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟\n"
+                " ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜\n"
             )
-        )"""
+        )
 
 
 if __name__ == '__main__':

@@ -1,4 +1,6 @@
 from juego.board import Board
+from juego.exceptions import *
+
 
 class Chess():
     def __init__(self):
@@ -12,9 +14,15 @@ class Chess():
     
     def move(self, from_row, from_col, to_row, to_col):
        
+        if not (0 <= from_row < 8 and 0 <= from_col < 8):
+         raise OriginInvalidMove()
         #validar que la posicion de origen sea valida
+        if not (0<=to_row<8 and 0<=to_col<8):
+            raise DestinationInvalidMove()
         #validar que la posicion de destino sea valida
+        
         #validar que la pieza se pueda mover a esa posicion
+
         #mover la pieza
 
         #cambio de turnos
@@ -37,6 +45,7 @@ class Chess():
     def show_board(self):
         return str(self.__board__)
  
+
 
 
 
