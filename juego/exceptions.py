@@ -1,9 +1,10 @@
+#movimientos invalidados
 class InvalidMove(Exception):
     pass
-
+#movimiento invalidado:desde el origen
 class OriginInvalidMove(InvalidMove):
     pass
-
+#movimiento invalidado:hacia el destino
 class DestinationInvalidMove(InvalidMove):
     pass
 
