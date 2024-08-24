@@ -118,3 +118,4 @@ class TestCli(unittest.TestCase):
         self.assertEqual(mock_input.call_count,3)
         self.assertEqual(mock_print.call_count,3)
         self.assertEqual(mock_chess_move.call_count,0)
+        

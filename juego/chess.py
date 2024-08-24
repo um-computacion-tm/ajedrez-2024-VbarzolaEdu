@@ -23,7 +23,7 @@ class Chess():
         
         #validar que la pieza se pueda mover a esa posicion
 
-        #mover la pieza
+        #aca iria el metodo que me permite mover la pieza
 
         #cambio de turnos
         
