@@ -3,6 +3,10 @@ class Rook(Piece):
     def __init__(self,color):
         super().__init__(color)
         self.__color__= color
+    
+      
+    White_str = "♜"
+    Black_str = "♖"
 
     def rook_move(self,from_row, from_col, to_row, to_col):
         #para mover la torre, filas deben ser iguales a las filas destino y las columnas distintas a las columnas destino. O tambien viseversa pero no ambas.
@@ -11,10 +15,5 @@ class Rook(Piece):
         else:
             return True
         
-        
-    def __str__(self):
-        if self.__color__ == "White":
-            return "♜"
-        else:
-            return "♖"
-
+    
+ 
