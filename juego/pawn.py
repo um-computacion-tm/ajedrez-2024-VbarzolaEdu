@@ -1,11 +1,10 @@
 from juego.piece import Piece
 
 class Pawn(Piece):
-    def __str__(self):
-        if self.__color__== "White":
-            return "♟"
-        else:
-            return "♙"
+    
+    White_str="♟"
+
+    Black_str= "♙"
 #El pawn solo puede moverse una o dos casillas hacia delante        
     def pawn_move(self,from_row,from_col,to_row,to_col):
         if self.__color__== "White":

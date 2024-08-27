@@ -5,6 +5,8 @@ omit =
     env/*
     */test*
     */__init__.py
+    test_*
+
 
 [report]
 exclude_lines =

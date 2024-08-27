@@ -1,11 +1,10 @@
 from juego.piece import Piece
 
 class Queen(Piece):
-    def __str__(self):
-        if self.__color__== "White":
-            return "♛"
-        else:
-            return "♕"
+    #varaibles de clase. Al definirlas fuera del metodo, al instaciar queen, se va a instanciar con estos valores.
+    
+    White_str = "♛"
+    Black_str = "♕"
         
     def queen_move(self,from_row,from_col,to_row,to_col):
         if from_row == to_row or from_col == to_col:
