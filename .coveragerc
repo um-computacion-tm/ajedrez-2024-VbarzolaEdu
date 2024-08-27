@@ -6,8 +6,8 @@ omit =
     */test*
     */__init__.py
     test_*
-
-
+    test/*
+    tests/*
 [report]
 exclude_lines =
     pragma: no cover
