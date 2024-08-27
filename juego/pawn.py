@@ -3,7 +3,6 @@ from juego.piece import Piece
 class Pawn(Piece):
     
     White_str="♟"
-
     Black_str= "♙"
 #El pawn solo puede moverse una o dos casillas hacia delante        
     def pawn_move(self,from_row,from_col,to_row,to_col):
