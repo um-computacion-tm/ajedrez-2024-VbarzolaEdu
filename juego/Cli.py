@@ -35,7 +35,7 @@ def play(chess):
     except Exception as e:
         print("Error")
 
-    print("Barzola trolo")
+    
 
 if __name__ == "__main__":
     main()

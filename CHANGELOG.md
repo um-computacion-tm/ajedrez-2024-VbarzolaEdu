@@ -16,4 +16,12 @@
 - Creacion de archivos de clases asociados a las piezas.
 - Creacion de archivos para test. 
 
-
+## 2024-08-27
+### Added
+- Fin Primer Sprint
+- Creacion de subdirectorios juego y test.
+- Creacion de tablero.
+- Planteamiento de logica de movimientos de las piezas.
+- Configuracion Dockerfile.
+- Creacion archivo "excentions.py" .
+- Se agregaron algunas validaciones de metodos.
