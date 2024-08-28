@@ -29,6 +29,8 @@ class Chess():
         
 
         piece = self.__board__.get_piece(from_row, from_col)
+        if piece.valid_positions(from_row, from_col, to_row, to_col):
+            raise InvalidMove()
         #debe validar que las coordenadas sean correctas primero en un metodo distinto de move
         self.change_turn()
 

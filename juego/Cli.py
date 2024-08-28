@@ -28,7 +28,6 @@ def play(chess):
     except DestinationInvalidMove as e:
         print("El movimiento de la fila o columna destino es invalido")
 
-
     except InvalidMove as e:
         print("Invalid Move")
 
