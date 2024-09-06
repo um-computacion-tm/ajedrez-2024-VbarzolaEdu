@@ -48,7 +48,8 @@ class Chess():
     def show_board(self):
         return str(self.__board__)
  
-
+    def get_color(self):
+        return self.__color__
 
 
 

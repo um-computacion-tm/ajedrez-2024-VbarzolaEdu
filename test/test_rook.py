@@ -122,6 +122,8 @@ class TestRook(unittest.TestCase):
         board.set_piece(4,7,rook)
         possibles=rook.possibles_positions_horizontal_left(4,7)
         self.assertEqual(possibles,[(4,6),(4,5),(4,4),(4,3)])
+    
+    #falta agregar casos de error and raise error
 
 if __name__ == '__main__':
     unittest.main()
