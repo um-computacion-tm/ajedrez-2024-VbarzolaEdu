@@ -122,7 +122,15 @@ class TestRook(unittest.TestCase):
         board.set_piece(4,7,rook)
         possibles=rook.possibles_positions_horizontal_left(4,7)
         self.assertEqual(possibles,[(4,6),(4,5),(4,4),(4,3)])
-    
+
+    #Test para validar que la torre no se mueva en diagonal
+    def test_move_diagonal_desc(self):
+        board = Board(for_test=True)
+        rook=Rook("White",board)
+        is_possible=rook.valid_positions_rook(from_row=0,from_col=0,to_row=1,to_col=1)
+        rook = board.get_piece(col=0, row=0)
+
+        self.assertFalse(is_possible)
     #falta agregar casos de error and raise error
 
 if __name__ == '__main__':

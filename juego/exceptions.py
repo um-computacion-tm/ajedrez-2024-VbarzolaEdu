@@ -8,6 +8,9 @@ class OriginInvalidMove(InvalidMove):
 class DestinationInvalidMove(InvalidMove):
     pass
 
+class InvalidTurn(InvalidMove):
+    pass
+
 class InvalidMoveNoPiece(InvalidMove):
     pass
 

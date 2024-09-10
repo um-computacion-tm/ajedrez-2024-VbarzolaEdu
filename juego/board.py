@@ -59,11 +59,8 @@ class Board():
     def set_piece(self, row, col, piece):
         self.__positions__[row][col] = piece
 
-    def move(self,from_row,from_col,to_row,to_col):
-        piece = self.get_piece(from_row, from_col)
-        if piece is not None:
-            if piece.can_move(to_row, to_col):
-                self.set_piece(to_row, to_col, piece)
-                self.set_piece(from_row, from_col, None)
-                return True
-        return False
+    #este metodo move hace que las piezas se muevan y coman entre ellas.
+    def move(self, from_row, from_col, to_row, to_col):
+        origin = self.get_piece(from_row, from_col)
+        self.set_piece(to_row, to_col, origin)
+        self.set_piece(from_row, from_col, None)

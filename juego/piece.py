@@ -9,3 +9,5 @@ class Piece:
         else:
             return self.Black_str
         
+    def get_color(self):
+        return self.__color__

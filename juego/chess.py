@@ -20,7 +20,8 @@ class Chess():
         if not (0<=to_row<8 and 0<=to_col<8):
             raise DestinationInvalidMove()
         #validar que la posicion de destino sea valida
-        
+        if not piece.get_color() == self.__turn__: 
+            raise InvalidTurn()
         #validar que la pieza se pueda mover a esa posicion
         #aca iria el metodo que me permite mover la pieza
         piece = self.__board__.get_piece(from_row, from_col)
