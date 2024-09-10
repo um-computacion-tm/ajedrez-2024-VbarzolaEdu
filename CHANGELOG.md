@@ -27,3 +27,15 @@
 - Se agregaron algunas validaciones de metodos.
 
 
+## 2024-09-3
+### Added
+- Agregados segundo Sprint
+- Creacion de validaciones.
+- Creacion de metodo move para piezas.
+- Logica y movimientos de pawn.
+
+
+
+
+
+
