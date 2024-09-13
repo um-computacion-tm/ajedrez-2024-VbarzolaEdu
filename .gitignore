@@ -3,6 +3,6 @@ env/
 juego/__pycache__/
 test/__pycache__/ 
 **/__pycache__/
-
-
+__pycache__/
+*.py[cod]
 
