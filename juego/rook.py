@@ -16,59 +16,70 @@ class Rook(Piece):
     #         return True
     
     def valid_positions_rook(self,from_row,from_col,to_row,to_col):
-        possible_positions=(self.possible_positions_vertical_down(from_row,from_col) + self.possible_positions_vertical_up(from_row,from_col)+ self.possibles_positions_horizontal_right(from_row,from_col)+self.possibles_positions_horizontal_left(from_row,from_col))
+        """
+        Verifica si un movimiento es válido para el rook.
+
+        Args:
+            from_row (int): La fila de origen del rook.
+            from_col (int): La columna de origen del rook.
+            to_row (int): La fila de destino del rook.
+            to_col (int): La columna de destino del rook.
+
+        Returns:
+            bool: True si el movimiento es válido, False en caso contrario.
+        """
+        possible_positions=(self.possible_positions_vertical_down(from_row,from_col)+ self.possible_positions_vertical_up(from_row,from_col) + self.possible_positions_horizontal_right(from_row,from_col)+ self.possible_positions_horizontal_left(from_row,from_col))
         
         return (to_row, to_col) in possible_positions
-
-#metodo para verificar si la torre se puede mover desde arriba hacia abajo
+    
     def possible_positions_vertical_down(self, row, col):
-        possibles = []
-        for next_row in range(row + 1, 8):
-            # que la celda que sigue no este ocupada..
-            other_piece = self.__board__.get_piece(next_row, col)
-            if other_piece is not None:
-                if other_piece.__color__ != self.__color__:
-                    possibles.append((next_row, col))
-                break
-            possibles.append((next_row, col))
-        return possibles    
-    #metodo para verificar si la torre se puede mover desde abajo hacia arriba
-    def possible_positions_vertical_up(self, row, col):
-        possibles = []
-        for next_row in range(row - 1, -1, -1):
-            other_piece = self.__board__.get_piece(next_row, col)
-            if other_piece is not None:
-                if other_piece.__color__ != self.__color__:
-                    possibles.append((next_row, col))
-                break
-            possibles.append((next_row, col))
-        return possibles
-    
-    #metodo para verificar si la torre se puede mover desde la derecha hacia la izquierda
-    def possibles_positions_horizontal_right(self,row,col):
-        possibles=[]
-        for next_col in range(col+1,8):
-            other_piece=self.__board__.get_piece(row,next_col)
-            if other_piece is not None:
-                if other_piece.__color__!=self.__color__:
-                    possibles.append((row,next_col))
-                break
-            possibles.append((row,next_col))
-        return possibles
-    #metodo para verificar si la torre se puede mover desde la izquierda hacia la derecha
-    def possibles_positions_horizontal_left(self,row,col):
-        possibles=[]
-        for next_col in range(col-1,-1,-1):
-            other_piece=self.__board__.get_piece(row,next_col)
-            if other_piece is not None:
-                if other_piece.__color__!=self.__color__:
-                    possibles.append((row,next_col))
-                break
-            possibles.append((row,next_col))
-        return possibles
-            
-    
+        """
+        Calcula las posiciones posibles para los movimiento verticales en direccion de arriba hacia abajo de la torre.
 
+        Args:
+            row (int): La fila actual del torre.
+            col (int): La columna actual del torre.
+
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para los movimientos verticales de arriba hacia abajo de la torre.
+        """
+        return self.possible_positions_vertical(row, col, 1, 1, 8) 
     
+    def possible_positions_vertical_up(self, row, col):
+        """
+        Calcula las posiciones posibles para los movimiento verticales en direccion de abajo hacia arriba de la torre.
+
+        Args:
+            row (int): La fila actual del torre.
+            col (int): La columna actual del torre.
+
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para los movimientos verticales de abajo hacia arriba de la torre.
+        """
+        return self.possible_positions_vertical(row, col, -1, -1, -1)
     
- 
+    def possible_positions_horizontal_right(self,row,col):
+        """
+        Calcula las posiciones posibles para los movimiento horizontales hacia la derecha de la torre.
+
+        Args:
+            row (int): La fila actual del torre.
+            col (int): La columna actual del torre.
+
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para los movimientos horizontales hacia la derecha de la torre.
+        """
+        return self.possible_positions_horizontal(row,col,1,8,1) 
+        
+    def possible_positions_horizontal_left(self,row,col):
+        """
+        Calcula las posiciones posibles para los movimiento horizontales hacia la izquierda de la torre.
+
+        Args:
+            row (int): La fila actual del torre.
+            col (int): La columna actual del torre.
+
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para los movimientos horizontales hacia la izquierda de la torre.
+        """
+        return self.possible_positions_horizontal(row,col,-1,-1,-1)

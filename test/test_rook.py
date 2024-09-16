@@ -76,7 +76,7 @@ class TestRook(unittest.TestCase):
     def test_move_horizontal_right(self):
         board = Board(for_test=True)
         rook = Rook("White", board)
-        possibles = rook.possibles_positions_horizontal_right(4, 1)
+        possibles = rook.possible_positions_horizontal_right(4, 1)
         self.assertEqual(
             possibles,
             [(4, 2), (4, 3), (4, 4), (4, 5), (4, 6), (4, 7)]
@@ -84,7 +84,7 @@ class TestRook(unittest.TestCase):
     def test_move_horizontal_left(self):
         board=Board(for_test=True)
         rook=Rook("White",board)
-        possibles= rook.possibles_positions_horizontal_left(4,7)
+        possibles= rook.possible_positions_horizontal_left(4,7)
         self.assertEqual(possibles,[(4,6),(4,5),(4,4),(4,3),(4,2),(4,1),(4,0)])
 
     def test_move_horizontal_right_with_own_piece(self):
@@ -92,7 +92,7 @@ class TestRook(unittest.TestCase):
         board.set_piece(4, 5, Pawn("White", board))
         rook = Rook("White", board)
         board.set_piece(4, 1, rook)
-        possibles = rook.possibles_positions_horizontal_right(4, 1)
+        possibles = rook.possible_positions_horizontal_right(4, 1)
         self.assertEqual(
             possibles,
             [(4, 2), (4, 3), (4, 4)]
@@ -102,7 +102,7 @@ class TestRook(unittest.TestCase):
         board.set_piece(4, 5, Pawn("Black", board))
         rook = Rook("White", board)
         board.set_piece(4, 1, rook)
-        possibles = rook.possibles_positions_horizontal_right(4, 1)
+        possibles = rook.possible_positions_horizontal_right(4, 1)
         self.assertEqual(
             possibles,
             [(4, 2), (4, 3), (4, 4), (4, 5)]
@@ -112,7 +112,7 @@ class TestRook(unittest.TestCase):
         board.set_piece(4,3,Pawn("White",board))
         rook=Rook("White",board)
         board.set_piece(4,7,rook)
-        possibles=rook.possibles_positions_horizontal_left(4,7)
+        possibles=rook.possible_positions_horizontal_left(4,7)
         self.assertEqual(possibles,[(4,6),(4,5),(4,4)])
 
     def test_move_horizontal_left_with_not_own_piece(self):
@@ -120,7 +120,7 @@ class TestRook(unittest.TestCase):
         board.set_piece(4,3,Pawn("Black",board))
         rook=Rook("White",board)
         board.set_piece(4,7,rook)
-        possibles=rook.possibles_positions_horizontal_left(4,7)
+        possibles=rook.possible_positions_horizontal_left(4,7)
         self.assertEqual(possibles,[(4,6),(4,5),(4,4),(4,3)])
 
     #Test para validar que la torre no se mueva en diagonal
@@ -131,6 +131,13 @@ class TestRook(unittest.TestCase):
         rook = board.get_piece(col=0, row=0)
 
         self.assertFalse(is_possible)
+    
+    def test_complete(self):
+        board=Board()
+        rook=Rook("White",board)
+        board.set_piece(2,1,rook)
+        possible=rook.valid_positions_rook(2,1,4,1)
+        self.assertEqual(possible,True)
     #falta agregar casos de error and raise error
 
 if __name__ == '__main__':
