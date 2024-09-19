@@ -34,6 +34,16 @@
 - Creacion de metodo move para piezas.
 - Logica y movimientos de pawn.
 
+## 2024-09-13
+### Added
+- Tercer sprint
+- Agregado de Validaciones para piezas.
+- Disminucion de codigo repetido
+- Ajedrez funcional
+- Agregado de indice para tablero
+- Finalizacion de ajedrez
+
+
 
 
 

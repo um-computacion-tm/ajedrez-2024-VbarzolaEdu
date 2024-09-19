@@ -7,7 +7,8 @@ class OriginInvalidMove(InvalidMove):
 #movimiento invalidado:hacia el destino
 class DestinationInvalidMove(InvalidMove):
     pass
-
+class EmptyPosition(InvalidMove):
+    pass
 class InvalidTurn(InvalidMove):
     pass
 

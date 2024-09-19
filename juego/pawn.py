@@ -4,96 +4,190 @@ class Pawn(Piece):
     
     White_str="♟"
     Black_str= "♙"
-#El pawn solo puede moverse una o dos casillas hacia delante        
-    # def pawn_move(self,from_row,from_col,to_row,to_col):
-    #     if self.__color__== "White":
-    #         if from_row==to_row +1 or to_row==from_row+2:
-    #             return True
-    #     else:
-    #         if from_row==to_row -1 or from_row==to_row==-2:
-    #             return True
     
 
-    def valid_positions_pawn(self,from_row,from_col,to_row,to_col):
-        possible_positions=(self.possible_positions_vertical_down(self,from_row,from_col)+self.possible_positions_vertical_up(self,from_row,from_col)+self.possible_capture_positions_down_right(self,from_row,from_col)+self.possible_capture_positions_down_left(self,from_row,from_col)+self.possible_capture_positions_up_right(self,from_row,from_col)+self.possible_capture_positions_up_left(self,from_row,from_col)+self.first_move_vertical_down(self,from_row,from_col)+self.first_move_vertical_up(self,from_row,from_col))
-        return (to_row,to_col) in possible_positions
+    def valid_positions_pawn(self, from_row, from_col, to_row, to_col):
+        """
+        Verifica si un movimiento es válido para el peón.
 
-    #A la hota de describir todos los movimientos se aislaron por un lado los movimientos de arriba a abajo de los de abajo a arriba. Tambien se aislo los capture del peon, siendo que se uso un metodo para cuando el peon quiera comer a la diagonal izquierda y otro para cuando quiera comer a la diagonal derecha
+        Args:
+            from_row (int): La fila de origen del peón.
+            from_col (int): La columna de origen del peón.
+            to_row (int): La fila de destino del peón.
+            to_col (int): La columna de destino del peón.
 
-    #consultar si es correcto que se use self al llamar los metodos en valid_positions_pawn. Y consular si es correcto se alla aislado tanto los movimientos.
+        Returns:
+            bool: True si el movimiento es válido, False en caso contrario.
+        """
+        possibles = self.possible_positions_vertical_up(from_row, from_col) if self.get_color() == "White" else self.possible_positions_vertical_down(from_row, from_col)
+        possibles += self.first_move_vertical_up(from_row, from_col) if self.get_color() == "White" else self.first_move_vertical_down(from_row, from_col)
+        possibles += self.possible_capture_positions_up_right(from_row, from_col) if self.get_color() == "White" else self.possible_capture_positions_down_right(from_row, from_col)
+        possibles += self.possible_capture_positions_up_left(from_row, from_col) if self.get_color() == "White" else self.possible_capture_positions_down_left(from_row, from_col)
+        possibles = sorted(set(possibles))  # Eliminar duplicados y ordenar
+        return (to_row, to_col) in possibles
 
     def first_move_vertical_down(self, row, col):
+        """
+        Calcula las posiciones posibles para el primer movimiento vertical hacia abajo del Peón.
+
+        Args:
+            row (int): La fila actual del peón.
+            col (int): La columna actual del peón.
+
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para el primer movimiento vertical hacia abajo.
+        """
         possibles = self.possible_positions_vertical_down(row, col)
-        #aca verifico si ya tiene casilla vacia adelante
         if row == 1 and len(possibles) == 1:
-            other_piece = self.__board__.get_piece(row+2, col)
+            other_piece = self.__board__.get_piece(row + 2, col)
             if other_piece is None:
-                possibles.append((row+2, col))
+                possibles.append((row + 2, col))
         return possibles
-  
 
-    def first_move_vertical_up(self,row,col):
-        possibles=self.possible_positions_vertical_up(row,col)
-        if row==6 and len(possibles)==1:
-            other_piece=self.__board__.get_piece(row-2,col)
+    def first_move_vertical_up(self, row, col):
+        """
+        Calcula las posiciones posibles para el primer movimiento vertical hacia arriba del Peón.
+
+        Args:
+            row (int): La fila actual del peón.
+            col (int): La columna actual del peón.
+
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para el primer movimiento vertical hacia arriba.
+        """
+        possibles = self.possible_positions_vertical_up(row, col)
+        if row == 6 and len(possibles) == 1:
+            other_piece = self.__board__.get_piece(row - 2, col)
             if other_piece is None:
-                possibles.append((row-2,col))
-
+                possibles.append((row - 2, col))
         return possibles
     
-    def possible_positions_vertical_down(self,row,col):
-        possibles=[]
-        for next_row in range(row+1,row+2):
-            other_piece=self.__board__.get_piece(row,col)
-            if other_piece is not None:
-                break
-            possibles.append((next_row,col))
-        return possibles
-    
-    def possible_capture_positions_down_right(self,row,col):
-        possibles=[]
-        other_piece=self.__board__.get_piece(row+1,col+1)
-        if other_piece is not None:
-            if other_piece.__color__!=self.__color__:
-                possibles.append((row+1,col+1))
-        return possibles
+    def possible_positions_single_vertical(self, row, col,kr):
+        """
+        Calcula las posiciones posibles para los movimiento verticales en cualquier direccion del Peón.
 
-    def possible_capture_positions_down_left(self,row,col):   
-        possibles=[]
-        other_piece=self.__board__.get_piece(row+1,col-1)
-        if other_piece is not None:
-            if other_piece.__color__!=self.__color__:
-                possibles.append((row+1,col-1))
-        return possibles
+        Args:
+            row (int): La fila actual del peón.
+            col (int): La columna actual del peón.
+            kr (int): La direccion del movimiento.
 
-
-    def possible_positions_vertical_up(self,row,col):
-        possibles=[]
-        for next_row in range(row-1,row-2,-1):
-            other_piece=self.__board__.get_piece(row,col)
-            if other_piece is not None:
-                break
-            possibles.append((next_row,col))
-        return possibles
-
-    def possible_capture_positions_up_right(self,row,col):
-        possibles=[]
-        other_piece=self.__board__.get_piece(row-1,col+1)
-        if other_piece is not None:
-            if other_piece.__color__!=self.__color__:
-                possibles.append((row-1,col+1))
-        return possibles
-    
-    def possible_capture_positions_up_left(self,row,col):
-        possibles=[]
-        other_piece=self.__board__.get_piece(row-1,col-1)
-        if other_piece is not None:
-            if other_piece.__color__!=self.__color__:
-                possibles.append((row-1,col-1))
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para el movimiento vertical.
+        """
+        possibles = []
+        if row + kr >= 0:
+            other_piece = self.__board__.get_piece(row + kr, col)
+            if other_piece is None:
+                possibles.append((row + kr, col))
         return possibles
     
 
-#falta agregar test unitarios para pawn.
-       
-#falta metodo para comerse entre piezas
+    def possible_positions_vertical_up(self, row, col):
+        """
+        Calcula las posiciones posibles para los movimiento verticales en direccion de abajo hacia arriba del Peón.
 
+        Args:
+            row (int): La fila actual del peón.
+            col (int): La columna actual del peón.
+
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para el movimiento vertical de abajo hacia arriba del peon.
+        """
+        return self.possible_positions_single_vertical(row,col,-1)
+    
+    def possible_positions_vertical_down(self, row, col):
+        """
+        Calcula las posiciones posibles para los movimiento verticales en direccion de arriba hacia abajo del Peón.
+
+        Args:
+            row (int): La fila actual del peón.
+            col (int): La columna actual del peón.
+
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para el movimiento vertical de arriba hacia abajo del peon.
+        """
+        return self.possible_positions_single_vertical(row,col,1)
+    
+    def possible_capture(self, row, col,kr,kc):
+        """
+        Calcula las posiciones posibles para los movimiento de captura en cualquier direccion del Peón.
+
+        Args:
+            row (int): La fila actual del peón.
+            col (int): La columna actual del peón.
+            kr (int): La direccion del movimiento en las filas.
+            kc (int): La direccion del movimiento en las columnas.
+
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para el movimiento de captura.
+        """
+        possibles = []
+        other_piece = self.__board__.get_piece(row + kr, col + kc)
+        if other_piece is not None and other_piece.get_color() != self.get_color():
+            possibles.append((row + kr, col + kc))
+        return possibles
+            
+
+    def possible_capture_positions_down_right(self, row, col):
+        """
+        Calcula las posiciones posibles para los movimiento de captura de arriba hacia abajo, hacia la derecha, del Peón.
+
+        Args:
+            row (int): La fila actual del peón.
+            col (int): La columna actual del peón.
+
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para el movimiento de captura de arriba hacia abajo, por la derecha, del Peón.
+        """
+        possibles = []
+        if row + 1 < 8 and col + 1 < 8:
+            possibles=self.possible_capture(row,col,1,1)
+        return possibles
+
+    def possible_capture_positions_down_left(self, row, col):
+        """
+        Calcula las posiciones posibles para los movimiento de captura de arriba hacia abajo, hacia la izquierda, del Peón.
+
+        Args:
+            row (int): La fila actual del peón.
+            col (int): La columna actual del peón.
+
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para el movimiento de captura de arriba hacia abajo, por la izquierda, del Peón.
+        """
+        possibles = []
+        if row + 1 < 8 and col - 1 >= 0:
+            possibles=self.possible_capture(row,col,1,-1)
+        return possibles
+    
+    def possible_capture_positions_up_right(self, row, col):
+        """
+        Calcula las posiciones posibles para los movimiento de captura de abajo hacia arriba, por la derecha, del Peón.
+
+        Args:
+            row (int): La fila actual del peón.
+            col (int): La columna actual del peón.
+
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para el movimiento de captura de abajo hacia arriba, por la derecha, del Peón.
+        """
+        possibles = []
+        if row - 1 >= 0 and col + 1 < 8:
+            possibles=self.possible_capture(row,col,-1,1)
+        return possibles
+
+    def possible_capture_positions_up_left(self, row, col):
+        """
+        Calcula las posiciones posibles para los movimiento de captura de abajo hacia arriba, por la izquierda, del Peón.
+
+        Args:
+            row (int): La fila actual del peón.
+            col (int): La columna actual del peón.
+
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para el movimiento de captura de abajo hacia izquierda, por la derecha, del Peón.
+        """
+        possibles = []
+        if row - 1 >= 0 and col - 1 >= 0:
+            possibles=self.possible_capture(row,col,-1,-1)
+        return possibles
