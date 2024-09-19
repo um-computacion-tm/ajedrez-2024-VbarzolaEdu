@@ -6,6 +6,7 @@ from juego.queen import Queen
 from juego.king import King
 from juego.pawn import Pawn
 from juego.piece import Piece
+from juego.exceptions import DestinationInvalidMove, OriginInvalidMove, InvalidTurn, InvalidMove
 
 import unittest
 
@@ -68,6 +69,46 @@ class TestBoard(unittest.TestCase):
                 " ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜\n"
             )
         )
+    #Test del move de las piezas, para saber que se mueven correctamente en el tablero
+    # def test_move(self):
+    #     board = Board(for_test=True)
+    #     rook = Rook(color='Black', board=board)
+    #     board.set_piece(0, 0, rook)
+
+    #     board.move(
+    #         from_row=0,
+    #         from_col=0,
+    #         to_row=0,
+    #         to_col=1,
+    #     )
+
+    #     self.assertIsInstance(board.get_piece(0, 1),Rook,)
+    #     self.assertEqual(
+    #         str(board),
+    #         (
+    #             " ♖      \n"
+    #             "        \n"
+    #             "        \n"
+    #             "        \n"
+    #             "        \n"
+    #             "        \n"
+    #             "        \n"
+    #             "        \n"
+    #         )
+    #     )
+
+
+#este test es para ver si se levanta la excepcion que quiero
+    # def test_get_piece_out_of_range(self):
+    #     board = Board(for_test=True)
+
+    #     with self.assertRaises(DestinationInvalidMove) as exc:
+    #         board.get_piece(10, 10)
+
+    #     self.assertEqual(
+    #         exc.exception.message,
+    #         "El movimiento de la fila o columna destino es invalido"
+    #     )
 
 
 if __name__ == '__main__':
