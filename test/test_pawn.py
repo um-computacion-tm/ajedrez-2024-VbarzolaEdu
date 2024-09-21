@@ -25,8 +25,8 @@ class TestRook(unittest.TestCase):
     def test_first_move_vertical_up(self):
         board=Board(for_test=True)
         pawn=Pawn("White",board)
-        possibles=pawn.first_move_vertical_up(6,1)
-        self.assertEqual(possibles,[(5,1),(4,1)])
+        possibles=pawn.first_move_vertical_up(6,6)
+        self.assertEqual(possibles,[(5,6),(4,6)])
     
     def test_possible_positions_vertical_down_no_piece(self):
         board=Board(for_test=True)
@@ -73,7 +73,14 @@ class TestRook(unittest.TestCase):
         board.set_piece(4,4,rook)
         possibles=pawn.possible_capture_positions_down_left(3,5)
         self.assertEqual(possibles,[(4,4)])
+    
+    def test_valid_positions_pawn(self):
+        board=Board(for_test=True)
+        pawn=Pawn("White",board)
+        possibles=pawn.valid_positions_pawn(6,6,5,6)
+        self.assertEqual(possibles,True)
 
-
+    
+  
 if __name__ == "__main__":
     unittest.main()
