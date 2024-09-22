@@ -56,5 +56,10 @@ class TestPiece(unittest.TestCase):
         self.assertTrue(horse.valid_move(1, 1, 3, 0))  # Movimiento en L válido
         self.assertFalse(horse.valid_move(1, 1, 3, 3))  # Movimiento inválido
 
+    # def test_valid_linear_move(self):
+    #     board = Board(for_test=True)
+    #     rook = Rook("White", board)
+    #     board.set_piece(0, 0, rook)
+    #     self.assertTrue(rook.valid_move(0, 0, 0, 5))
 if __name__ == '__main__':
     unittest.main()

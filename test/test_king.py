@@ -5,6 +5,7 @@ from juego.king import King
 
 
 class TestKing(unittest.TestCase):
+    
     def test_possible_positions_vertical_down(self):
         board=Board(for_test=True)
         king=King("Black",board)
