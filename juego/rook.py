@@ -16,21 +16,7 @@ class Rook(Piece):
     #         return True
     
     def valid_positions_rook(self,from_row,from_col,to_row,to_col):
-        """
-        Verifica si un movimiento es válido para el rook.
-
-        Args:
-            from_row (int): La fila de origen del rook.
-            from_col (int): La columna de origen del rook.
-            to_row (int): La fila de destino del rook.
-            to_col (int): La columna de destino del rook.
-
-        Returns:
-            bool: True si el movimiento es válido, False en caso contrario.
-        """
-        possible_positions=(self.possible_positions_vertical_down(from_row,from_col)+ self.possible_positions_vertical_up(from_row,from_col) + self.possible_positions_horizontal_right(from_row,from_col)+ self.possible_positions_horizontal_left(from_row,from_col))
-        
-        return (to_row, to_col) in possible_positions
+       return self.valid_positions_straight(from_row,from_col,to_row,to_col)
     
     def possible_positions_vertical_down(self, row, col):
         """
