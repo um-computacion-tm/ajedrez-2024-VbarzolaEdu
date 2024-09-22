@@ -61,5 +61,14 @@ class TestPiece(unittest.TestCase):
     #     rook = Rook("White", board)
     #     board.set_piece(0, 0, rook)
     #     self.assertTrue(rook.valid_move(0, 0, 0, 5))
+
+    # def test_valid_move_horse(self):
+    #     board = Board(for_test=True)
+    #     queen= Queen("White", board)
+    #     board.set_piece(1, 1,queen)
+    #     self.assertTrue(queen.valid_move_diagonal(1,1,3,2))  # Movimiento en L válido
+    #     self.assertTrue(horse.valid_move(1, 1, 3, 0))  # Movimiento en L válido
+    #     self.assertFalse(horse.valid_move(1, 1, 3, 3))  # Movimiento inválido
+
 if __name__ == '__main__':
     unittest.main()
