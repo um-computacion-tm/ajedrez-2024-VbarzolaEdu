@@ -31,7 +31,34 @@ class Piece:
         """
         return self.__color__
     
-    def valid_move(self, from_row, from_col, to_row, to_col):
+    def valid_move_1(self, from_row, from_col, to_row, to_col):
+        """
+        Verifica si un movimiento es válido para la pieza.
+
+        Este método debe ser implementado por las subclases específicas de cada tipo de pieza.
+
+        Args:
+            from_row (int): La fila de origen de la pieza.
+            from_col (int): La columna de origen de la pieza.
+            to_row (int): La fila de destino de la pieza.
+            to_col (int): La columna de destino de la pieza.
+
+        Returns:
+            bool: True si el movimiento es válido, False en caso contrario.
+        """
+        from juego.knight import Knight
+        from juego.king import King
+        from juego.pawn import Pawn
+        if isinstance(self, Pawn):
+            return self.valid_positions_pawn(from_row, from_col, to_row, to_col)
+        elif isinstance(self, Knight):
+            return self.valid_positions_Knight(from_row, from_col, to_row, to_col)
+        elif isinstance(self, King):
+            return self.valid_positions_king(from_row, from_col, to_row, to_col)
+        else:
+            return False
+        
+    def valid_move_2(self, from_row, from_col, to_row, to_col):
         """
         Verifica si un movimiento es válido para la pieza.
 
@@ -47,23 +74,14 @@ class Piece:
             bool: True si el movimiento es válido, False en caso contrario.
         """
         from juego.rook import Rook
-        from juego.knight import Knight
         from juego.bishop import Bishop
         from juego.queen import Queen
-        from juego.king import King
-        from juego.pawn import Pawn
         if isinstance(self, Rook):
             return self.valid_positions_rook(from_row, from_col, to_row, to_col)
-        elif isinstance(self, Pawn):
-            return self.valid_positions_pawn(from_row, from_col, to_row, to_col)
         elif isinstance(self, Bishop):
             return self.valid_positions_bishop(from_row, from_col, to_row, to_col)
-        elif isinstance(self, Knight):
-            return self.valid_positions_Knight(from_row, from_col, to_row, to_col)
         elif isinstance(self, Queen):
             return self.valid_positions_queen(from_row, from_col, to_row, to_col)
-        elif isinstance(self, King):
-            return self.valid_positions_king(from_row, from_col, to_row, to_col)
         else:
             return False
         

@@ -5,6 +5,7 @@ class Pawn(Piece):
     White_str="♟"
     Black_str= "♙"
     
+    
 
     def valid_positions_pawn(self, from_row, from_col, to_row, to_col):
         """
@@ -19,11 +20,11 @@ class Pawn(Piece):
         Returns:
             bool: True si el movimiento es válido, False en caso contrario.
         """
-        possibles = self.possible_positions_vertical_up(from_row, from_col) if self.get_color() == "White" else self.possible_positions_vertical_down(from_row, from_col)
-        possibles += self.first_move_vertical_up(from_row, from_col) if self.get_color() == "White" else self.first_move_vertical_down(from_row, from_col)
-        possibles += self.possible_capture_positions_up_right(from_row, from_col) if self.get_color() == "White" else self.possible_capture_positions_down_right(from_row, from_col)
-        possibles += self.possible_capture_positions_up_left(from_row, from_col) if self.get_color() == "White" else self.possible_capture_positions_down_left(from_row, from_col)
-        possibles = sorted(set(possibles))  # Eliminar duplicados y ordenar
+        if self.get_color() == "White":
+            possibles= self.possible_positions_vertical_up(from_row, from_col) + self.first_move_vertical_up(from_row, from_col) + self.possible_capture_positions_up_right(from_row, from_col) + self.possible_capture_positions_up_left(from_row, from_col)
+        else:
+            possibles= self.possible_positions_vertical_down(from_row, from_col) + self.first_move_vertical_down(from_row, from_col) + self.possible_capture_positions_down_right(from_row, from_col) + self.possible_capture_positions_down_left(from_row, from_col)
+        possibles = sorted(set(possibles))
         return (to_row, to_col) in possibles
 
     def first_move_vertical_down(self, row, col):
