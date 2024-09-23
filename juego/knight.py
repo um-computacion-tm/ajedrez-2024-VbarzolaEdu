@@ -6,7 +6,7 @@ class Knight(Piece):
     Black_str = "♘"
         
 
-    def valid_positions_Knight(self, from_row, from_col, to_row, to_col):
+    def valid_positions_knight(self, from_row, from_col, to_row, to_col):
         """
         Verifica si un movimiento es válido para el Knight.
 
