@@ -1,3 +1,4 @@
+
 class Piece:
     def __init__(self,color,board):
         """
@@ -84,7 +85,10 @@ class Piece:
             return self.valid_positions_queen(from_row, from_col, to_row, to_col)
         else:
             return False
-        
+    
+
+
+    
     ##################################
 
     #  metodo para n movimientos verticales.
@@ -112,51 +116,6 @@ class Piece:
                 break
             possibles.append((next_row, col))
         return possibles  
-    
-    # def possible_positions_linear(self, row, col, kr,kc , stop,step):
-    #     """
-    #     Calcula las posiciones posibles para los movimientos lineales (horizontales o verticales) de una pieza.
-
-    #     Args:
-    #         row (int): La fila actual de la pieza.
-    #         col (int): La columna actual de la pieza.
-    #         kr (int): El incremento de fila.
-    #         kc (int): El incremento de columna.
-    #         step (int): El paso a seguir.
-    #         stop (int): El valor de parada para el bucle.
-
-    #     Returns:
-    #         list: Lista de tuplas con las posiciones posibles en la dirección especificada.
-    #     """
-    #     possibles = []
-    #     if kc == 0:
-    #         for next_row in range(row + kr, stop, step):
-    #             # que la celda que sigue no este ocupada..
-    #             other_piece = self.__board__.get_piece(next_row, col)
-    #             if other_piece is not None:
-    #                 if other_piece.__color__ != self.__color__:
-    #                     possibles.append((next_row, col))
-    #                 break
-    #             possibles.append((next_row, col))
-    #     elif kr == 0:
-    #         for next_col in range(col + kc, stop, step):
-    #             # que la celda que sigue no este ocupada..
-    #             other_piece = self.__board__.get_piece(row, next_col)
-    #             if other_piece is not None:
-    #                 if other_piece.__color__ != self.__color__:
-    #                     possibles.append((row, next_col))
-    #                 break
-    #             possibles.append((row, next_col))
-    #     return possibles  
-    
-    
-    # def possibles_checks(self,row,col,kr,kc):
-    #         other_piece=self.__board__.get_piece(row+kr,col+kc)
-    #         if other_piece is not None:
-    #             if other_piece.__color__!=self.__color__:
-    #                 return True
-    
-    
     
 
 
@@ -186,11 +145,6 @@ class Piece:
             possibles.append((row,next_col))
         return possibles
     
-    # def possible_positions_horizontal(self, row, col,kc,stop,step):
-    #     return self.possible_positions_linear (row, col,0,kc,stop,step) 
-    
-    # def possible_positions_vertical(self, row, col, kr,step,stop):
-    #     return self.possible_positions_linear(row, col, kr,0,stop,step) 
     
     #metodo para n movimientos diagonales.
     def possible_positions_diagonal(self,row,col,kr,kc):
@@ -220,6 +174,34 @@ class Piece:
         return possibles
     
 
+    #metodo para movimiento compartido unitario.
+
+    def possible_positions_one_move(self, row, col, kr, kc):
+        """
+        Calcula las posiciones posibles para los movimiento diagonales en cualquier direccion del Rey.
+
+        Args:
+            row (int): La fila actual del rey.
+            col (int): La columna actual del rey.
+            kr (int): La cantidad de filas a mover.
+            kc (int): La cantidad de columnas a mover.
+            step (int): El paso a seguir.
+
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para el rey en diagonal.
+        """
+        possibles = []
+        new_row = row + kr
+        new_col = col + kc
+        if 0 <= new_row < 8 and 0 <= new_col < 8:
+            other_piece = self.__board__.get_piece(new_row, new_col)
+            if other_piece is not None and other_piece.__color__ != self.__color__:
+                possibles.append((new_row, new_col))
+            elif other_piece is None:
+                possibles.append((new_row, new_col))
+        return possibles
+    
+################
     ##valid positions 
     def valid_positions_straight(self,from_row,from_col,to_row,to_col):
         """
