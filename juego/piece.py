@@ -90,60 +90,185 @@ class Piece:
 
     
     ##################################
-
-    #  metodo para n movimientos verticales.
-    def possible_positions_vertical(self,row,col,kr,step,stop):
+    def check_position_for_piece(self, row, col):
         """
-        Calcula las posiciones posibles para las piezas que hagan movimientos verticales.
+        Verifica si hay una pieza en la posición dada y si es del color contrario.
+
+        Args:
+            row (int): La fila a verificar.
+            col (int): La columna a verificar.
+
+        Returns:
+            tuple: Un booleano indicando si se debe detener la iteración y una lista de posibles movimientos.
+        """
+        possibles = []
+        other_piece = self.__board__.get_piece(row, col)
+
+        if other_piece is not None:
+            if other_piece.__color__ != self.__color__:
+                possibles.append((row, col))
+            return True, possibles  # True indica que se debe detener la iteración
+        else:
+            possibles.append((row, col))
+
+        return False, possibles  # False indica que se puede continuar
+    
+    def possible_positions_vertical(self, row, col, kr, step, stop):
+        """
+        Calcula las posiciones posibles para las piezas que se mueven verticalmente.
 
         Args:
             row (int): La fila actual de la pieza.
-            col (int): La columna actual del pieza.
-            kr (int): La cantidad de filas a mover.
-            step (int): El paso a seguir.
-            stop (int): La fila de parada.
+            col (int): La columna actual de la pieza.
+            kr (int): La cantidad de filas a mover (1 o -1).
+            step (int): El tamaño del paso de movimiento.
+            stop (int): La fila límite para detener el movimiento.
 
         Returns:
             list: Lista de tuplas con las posiciones verticales posibles.
         """
         possibles = []
         for next_row in range(row + kr, stop, step):
-            # que la celda que sigue no este ocupada..
-            other_piece = self.__board__.get_piece(next_row, col)
-            if other_piece is not None:
-                if other_piece.__color__ != self.__color__:
-                    possibles.append((next_row, col))
+            stop_iteration, new_possibles = self.check_position_for_piece(next_row, col)
+            possibles.extend(new_possibles)
+            if stop_iteration:
                 break
-            possibles.append((next_row, col))
-        return possibles  
+        return possibles
     
-
-
-
-    #metodo para n movimientos horizontales.  
-    def possible_positions_horizontal(self,row,col,kc,stop,step):
+    def possible_positions_horizontal(self, row, col, kc, stop, step):
         """
-        Calcula las posiciones posibles para las piezas que hagan movimientos horizontales.
-
+        Calcula las posiciones posibles para las piezas que se mueven horizontalmente.
+    
         Args:
             row (int): La fila actual de la pieza.
-            col (int): La columna actual del pieza.
-            kc (int): La cantidad de columnas a mover.
-            step (int): El paso a seguir.
-            stop (int): La fila de parada.
-
+            col (int): La columna actual de la pieza.
+            kc (int): La cantidad de columnas a mover (1 o -1).
+            step (int): El tamaño del paso de movimiento.
+            stop (int): La columna límite para detener el movimiento.
+    
         Returns:
             list: Lista de tuplas con las posiciones horizontales posibles.
         """
-        possibles=[]
-        for next_col in range(col+kc,stop,step):
-            other_piece=self.__board__.get_piece(row,next_col)
-            if other_piece is not None:
-                if other_piece.__color__!=self.__color__:
-                    possibles.append((row,next_col))
+        possibles = []
+        for next_col in range(col + kc, stop, step):
+            stop_iteration, new_possibles = self.check_position_for_piece(row, next_col)
+            possibles.extend(new_possibles)
+            if stop_iteration:
                 break
-            possibles.append((row,next_col))
         return possibles
+
+
+
+
+
+    #  metodo para n movimientos verticales.
+    # def possible_positions_vertical(self,row,col,kr,step,stop):
+    #     """
+    #     Calcula las posiciones posibles para las piezas que hagan movimientos verticales.
+
+    #     Args:
+    #         row (int): La fila actual de la pieza.
+    #         col (int): La columna actual del pieza.
+    #         kr (int): La cantidad de filas a mover.
+    #         step (int): El paso a seguir.
+    #         stop (int): La fila de parada.
+
+    #     Returns:
+    #         list: Lista de tuplas con las posiciones verticales posibles.
+    #     """
+    #     possibles = []
+    #     for next_row in range(row + kr, stop, step):
+    #         # que la celda que sigue no este ocupada..
+    #         other_piece = self.__board__.get_piece(next_row, col)
+    #         if other_piece is not None:
+    #             if other_piece.__color__ != self.__color__:
+    #                 possibles.append((next_row, col))
+    #             break
+    #         possibles.append((next_row, col))
+    #     return possibles  
+    
+    # def possible_positions_vertical(self,row,col,kr,step,stop):
+    #     """
+    #     Calcula las posiciones posibles para las piezas que hagan movimientos verticales.
+
+    #     Args:
+    #         row (int): La fila actual de la pieza.
+    #         col (int): La columna actual del pieza.
+    #         kr (int): La cantidad de filas a mover.
+    #         step (int): El paso a seguir.
+    #         stop (int): La fila de parada.
+
+    #     Returns:
+    #         list: Lista de tuplas con las posiciones verticales posibles.
+    #     """
+    #     possibles = []
+    #     for next_row in range(row + kr, stop, step):
+    #         possible_position = self.possible_position_check_for_piece(next_row, col)
+    #         if possible_position:
+    #             possibles.extend(possible_position)
+    #         if self.__board__.get_piece(next_row, col) is not None:
+    #             break
+    #     return possibles
+    
+
+    # def possible_position_check_for_piece(self,row,col):
+    #     possibles = []
+    #     other_piece = self.__board__.get_piece(row, col)
+    #     if other_piece is not None:
+    #         if other_piece.__color__ != self.__color__:
+    #             possibles.append((row, col))
+    #     else:
+    #         possibles.append((row, col))
+    #     return possibles
+
+    # def possible_positions_horizontal(self,row,col,kc,stop,step):
+    #     """
+    #     Calcula las posiciones posibles para las piezas que hagan movimientos horizontales.
+
+    #     Args:
+    #         row (int): La fila actual de la pieza.
+    #         col (int): La columna actual del pieza.
+    #         kc (int): La cantidad de columnas a mover.
+    #         step (int): El paso a seguir.
+    #         stop (int): La fila de parada.
+
+    #     Returns:
+    #         list: Lista de tuplas con las posiciones horizontales posibles.
+    #     """
+    #     possibles=[]
+    #     for next_col in range(col+kc,stop,step):
+    #         other_piece=self.__board__.get_piece(row,next_col)
+    #         if other_piece is not None:
+    #             if other_piece.__color__!=self.__color__:
+    #                 possibles.append((row,next_col))
+    #             break
+    #         possibles.append((row,next_col))
+    #     return possibles
+
+    #metodo para n movimientos horizontales.  
+    # def possible_positions_horizontal(self,row,col,kc,stop,step):
+    #     """
+    #     Calcula las posiciones posibles para las piezas que hagan movimientos horizontales.
+
+    #     Args:
+    #         row (int): La fila actual de la pieza.
+    #         col (int): La columna actual del pieza.
+    #         kc (int): La cantidad de columnas a mover.
+    #         step (int): El paso a seguir.
+    #         stop (int): La fila de parada.
+
+    #     Returns:
+    #         list: Lista de tuplas con las posiciones horizontales posibles.
+    #     """
+    #     possibles=[]
+    #     for next_col in range(col+kc,stop,step):
+    #         other_piece=self.__board__.get_piece(row,next_col)
+    #         if other_piece is not None:
+    #             if other_piece.__color__!=self.__color__:
+    #                 possibles.append((row,next_col))
+    #             break
+    #         possibles.append((row,next_col))
+    #     return possibles
     
     
     #metodo para n movimientos diagonales.

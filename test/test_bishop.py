@@ -29,5 +29,11 @@ class TestBishop(unittest.TestCase):
         possibles=bishop.possible_positions_diagonal(7,0,-1,1)
         self.assertEqual(possibles, [(6,1),(5,2),(4,3),(3,4),(2,5),(1,6),(0,7)])
 
+    def test_diagonal_dec_rigt_2(self):
+        board=Board(for_test=True)
+        bishop= Bishop("White",board)
+        possibles=bishop.possible_positions_diagonal(3,0,1,1)
+        self.assertEqual(possibles, [(4,1),(5,2),(6,3),(7,4)])
+
 if __name__ == '__main__':
     unittest.main()
