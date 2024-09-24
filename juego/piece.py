@@ -50,14 +50,6 @@ class Piece:
         from juego.knight import Knight
         from juego.king import King
         from juego.pawn import Pawn
-        # if isinstance(self, Pawn):
-        #     return self.valid_positions_pawn(from_row, from_col, to_row, to_col)
-        # elif isinstance(self, Knight):
-        #     return self.valid_positions_knight(from_row, from_col, to_row, to_col)
-        # elif isinstance(self, King):
-        #     return self.valid_positions_king(from_row, from_col, to_row, to_col)
-        # else:
-        #     return False
         ptr_funcion = None
         if isinstance(self, Pawn):
             ptr_funcion = self.valid_positions_pawn
@@ -97,45 +89,6 @@ class Piece:
         else:
             return False
     
-
-    # def valid_move(self, from_row, from_col, to_row, to_col):
-    #     from juego.knight import Knight
-    #     from juego.king import King
-    #     from juego.pawn import Pawn
-    #     from juego.rook import Rook
-    #     from juego.bishop import Bishop
-    #     from juego.queen import Queen
-    #     """
-    #     Verifica si un movimiento es válido para la pieza, dependiendo de su tipo.
-
-    #     Args:
-    #         from_row (int): La fila de origen de la pieza.
-    #         from_col (int): La columna de origen de la pieza.
-    #         to_row (int): La fila de destino de la pieza.
-    #         to_col (int): La columna de destino de la pieza.
-
-    #     Returns:
-    #         bool: True si el movimiento es válido, False en caso contrario.
-    #     """
-    #     piece_validation_methods = {
-    #         'Pawn': self.valid_positions_pawn,
-    #         'Knight': self.valid_positions_knight,
-    #         'King': self.valid_positions_king,
-    #         'Rook': self.valid_positions_rook,
-    #         'Bishop': self.valid_positions_bishop,
-    #         'Queen': self.valid_positions_queen
-    #     }
-
-    #     # Obtenemos el tipo de la pieza
-    #     piece_type = type(self).__name__
-
-    #     # Validamos el movimiento llamando al método correspondiente
-    #     if piece_type in piece_validation_methods:
-    #         return piece_validation_methods[piece_type](from_row, from_col, to_row, to_col)
-
-    #     return False
-
-
 
 
 

@@ -7,26 +7,73 @@ class Pawn(Piece):
     
     
 
+    # def valid_positions_pawn(self, from_row, from_col, to_row, to_col):
+    #     """
+    #     Verifica si un movimiento es válido para el peón.
+
+    #     Args:
+    #         from_row (int): La fila de origen del peón.
+    #         from_col (int): La columna de origen del peón.
+    #         to_row (int): La fila de destino del peón.
+    #         to_col (int): La columna de destino del peón.
+
+    #     Returns:
+    #         bool: True si el movimiento es válido, False en caso contrario.
+    #     """
+    #     if self.get_color() == "White":
+    #         possibles= self.possible_positions_vertical_up(from_row, from_col) + self.first_move_vertical_up(from_row, from_col) + self.possible_capture_positions_up_right(from_row, from_col) + self.possible_capture_positions_up_left(from_row, from_col)
+    #     if self.get_color() == "Black":
+    #         possibles= self.possible_positions_vertical_down(from_row, from_col) + self.first_move_vertical_down(from_row, from_col) + self.possible_capture_positions_down_right(from_row, from_col) + self.possible_capture_positions_down_left(from_row, from_col)
+    #     if possibles is not None: 
+    #         possibles = sorted(set(possibles))
+    #     return (to_row, to_col) in possibles
+
     def valid_positions_pawn(self, from_row, from_col, to_row, to_col):
         """
         Verifica si un movimiento es válido para el peón.
-
+    
         Args:
             from_row (int): La fila de origen del peón.
             from_col (int): La columna de origen del peón.
             to_row (int): La fila de destino del peón.
             to_col (int): La columna de destino del peón.
-
+    
         Returns:
             bool: True si el movimiento es válido, False en caso contrario.
         """
-        if self.get_color() == "White":
-            possibles= self.possible_positions_vertical_up(from_row, from_col) + self.first_move_vertical_up(from_row, from_col) + self.possible_capture_positions_up_right(from_row, from_col) + self.possible_capture_positions_up_left(from_row, from_col)
-        if self.get_color() == "Black":
-            possibles= self.possible_positions_vertical_down(from_row, from_col) + self.first_move_vertical_down(from_row, from_col) + self.possible_capture_positions_down_right(from_row, from_col) + self.possible_capture_positions_down_left(from_row, from_col)
-        if possibles is not None: 
-            possibles = sorted(set(possibles))
+        # Definir el mapeo de direcciones y movimientos en función del color
+        move_mappings = {
+            "White": {
+                "vertical": self.possible_positions_vertical_up,
+                "first_move": self.first_move_vertical_up,
+                "capture_right": self.possible_capture_positions_up_right,
+                "capture_left": self.possible_capture_positions_up_left
+            },
+            "Black": {
+                "vertical": self.possible_positions_vertical_down,
+                "first_move": self.first_move_vertical_down,
+                "capture_right": self.possible_capture_positions_down_right,
+                "capture_left": self.possible_capture_positions_down_left
+            }
+        }
+    
+        # Obtener el mapeo correspondiente según el color del peón
+        color = self.get_color()
+        moves = move_mappings[color]
+    
+        # Combinar las posibles posiciones de movimiento
+        possibles = (
+            moves["vertical"](from_row, from_col) +
+            moves["first_move"](from_row, from_col) +
+            moves["capture_right"](from_row, from_col) +
+            moves["capture_left"](from_row, from_col)
+        )
+    
+        # Ordenar y eliminar duplicados
+        possibles = sorted(set(possibles)) if possibles else []
+    
         return (to_row, to_col) in possibles
+    
 
     def first_move_vertical_down(self, row, col):
         """
