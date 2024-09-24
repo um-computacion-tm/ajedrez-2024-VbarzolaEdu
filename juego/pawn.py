@@ -22,9 +22,10 @@ class Pawn(Piece):
         """
         if self.get_color() == "White":
             possibles= self.possible_positions_vertical_up(from_row, from_col) + self.first_move_vertical_up(from_row, from_col) + self.possible_capture_positions_up_right(from_row, from_col) + self.possible_capture_positions_up_left(from_row, from_col)
-        else:
+        if self.get_color() == "Black":
             possibles= self.possible_positions_vertical_down(from_row, from_col) + self.first_move_vertical_down(from_row, from_col) + self.possible_capture_positions_down_right(from_row, from_col) + self.possible_capture_positions_down_left(from_row, from_col)
-        possibles = sorted(set(possibles))
+        if possibles is not None: 
+            possibles = sorted(set(possibles))
         return (to_row, to_col) in possibles
 
     def first_move_vertical_down(self, row, col):
