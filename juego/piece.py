@@ -50,14 +50,24 @@ class Piece:
         from juego.knight import Knight
         from juego.king import King
         from juego.pawn import Pawn
+        # if isinstance(self, Pawn):
+        #     return self.valid_positions_pawn(from_row, from_col, to_row, to_col)
+        # elif isinstance(self, Knight):
+        #     return self.valid_positions_knight(from_row, from_col, to_row, to_col)
+        # elif isinstance(self, King):
+        #     return self.valid_positions_king(from_row, from_col, to_row, to_col)
+        # else:
+        #     return False
+        ptr_funcion = None
         if isinstance(self, Pawn):
-            return self.valid_positions_pawn(from_row, from_col, to_row, to_col)
-        elif isinstance(self, Knight):
-            return self.valid_positions_knight(from_row, from_col, to_row, to_col)
-        elif isinstance(self, King):
-            return self.valid_positions_king(from_row, from_col, to_row, to_col)
-        else:
-            return False
+            ptr_funcion = self.valid_positions_pawn
+        if isinstance(self, Knight):
+            ptr_funcion = self.valid_positions_knight
+        if isinstance(self, King):
+            ptr_funcion = self.valid_positions_king
+        if ptr_funcion is not None:
+            return ptr_funcion(from_row, from_col, to_row, to_col)
+        return False
         
     def valid_move_2(self, from_row, from_col, to_row, to_col):
         """
