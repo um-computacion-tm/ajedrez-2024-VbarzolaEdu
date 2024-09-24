@@ -262,12 +262,14 @@ class Piece:
             if not (0 <= next_row < 8 and 0 <= next_col < 8):
                 break
 
-            other_piece = self.__board__.get_piece(next_row, next_col)
-            if other_piece is not None:
-                if other_piece.__color__ != self.__color__:
-                    possibles.append((next_row, next_col))
-                break
-            possibles.append((next_row, next_col))
+            # other_piece = self.__board__.get_piece(next_row, next_col)
+            # if other_piece is not None:
+            #     if other_piece.__color__ != self.__color__:
+            #         possibles.append((next_row, next_col))
+            #     break
+            # possibles.append((next_row, next_col))
+            if self.check_and_add_position(possibles, next_row, next_col):
+                break  
 
             if stop and (next_row == stop or next_col == stop):
                 break
@@ -357,6 +359,33 @@ class Piece:
     
     
     #metodo para n movimientos diagonales.
+    # def possible_positions_diagonal(self,row,col,kr,kc):
+    #     """
+    #     Calcula las posiciones posibles para las piezas que hagan movimientos diagonales.
+
+    #     Args:
+    #         row (int): La fila actual de la pieza.
+    #         col (int): La columna actual del pieza.
+    #         kr (int): La cantidad de filas a mover.
+    #         kc (int): La cantidad de columnas a mover.
+
+    #     Returns:
+    #         list: Lista de tuplas con las posiciones diagonales posibles.
+    #     """
+    #     possibles=[]
+    #     next_row,next_col=row+kr,col+kc
+    #     while 0<= next_row<8 and 8>next_col>=0:
+    #         other_piece=self.__board__.get_piece(next_row,next_col)
+    #         if other_piece is not None:
+    #                 if other_piece.__color__!=self.__color__:
+    #                     possibles.append((next_row,next_col))
+    #                 break  
+    #         possibles.append((next_row,next_col))
+    #         next_row +=kr
+    #         next_col +=kc
+    #     return possibles
+    
+
     def possible_positions_diagonal(self,row,col,kr,kc):
         """
         Calcula las posiciones posibles para las piezas que hagan movimientos diagonales.
@@ -373,16 +402,33 @@ class Piece:
         possibles=[]
         next_row,next_col=row+kr,col+kc
         while 0<= next_row<8 and 8>next_col>=0:
-            other_piece=self.__board__.get_piece(next_row,next_col)
-            if other_piece is not None:
-                    if other_piece.__color__!=self.__color__:
-                        possibles.append((next_row,next_col))
-                    break  
-            possibles.append((next_row,next_col))
+            if self.check_and_add_position(possibles, next_row, next_col):
+                break  
             next_row +=kr
             next_col +=kc
         return possibles
     
+    
+    def check_and_add_position(self, possibles, row, col):
+        """
+        Verifica si hay una pieza en la posición dada y añade la posición a posibles si es válida.
+
+        Args:
+            possibles (list): Lista de posiciones posibles.
+            row (int): La fila a verificar.
+            col (int): La columna a verificar.
+
+        Returns:
+            bool: True si se debe detener la iteración, False si no.
+        """
+        other_piece = self.__board__.get_piece(row, col)
+        if other_piece is not None:
+            if other_piece.__color__ != self.__color__:
+                possibles.append((row, col))
+            return True  # Se debe detener la iteración
+        possibles.append((row, col))
+        return False  # Se puede continuar
+
 
     #metodo para movimiento compartido unitario.
 
