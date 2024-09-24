@@ -20,7 +20,7 @@ class TestRook(unittest.TestCase):
     def test_move_vertical_desc(self):
         board = Board(for_test=True)
         rook = Rook("White", board)
-        possibles = rook.possible_positions_vertical(4, 1, 1, 1, 8)
+        possibles = rook.possible_positions_vertical(4, 1, 1, 8,1)
         self.assertEqual(
             possibles,
             [(5, 1), (6, 1), (7, 1)]
@@ -40,7 +40,7 @@ class TestRook(unittest.TestCase):
         board.set_piece(6, 1, Pawn("White", board))
         rook = Rook("White", board)
         board.set_piece(2, 1, rook)
-        possibles = rook.possible_positions_vertical(2, 1, 1, 1, 8)
+        possibles = rook.possible_positions_vertical(2, 1, 1, 8,1)
         self.assertEqual(
             possibles,
             [(3,1),(4,1),(5, 1)]
@@ -51,7 +51,7 @@ class TestRook(unittest.TestCase):
         board.set_piece(6, 1, Pawn("Black", board))
         rook = Rook("White", board)
         board.set_piece(4, 1, rook)
-        possibles = rook.possible_positions_vertical(4, 1, 1, 1, 8)
+        possibles = rook.possible_positions_vertical(4, 1, 1, 8,1)
         self.assertEqual(
             possibles,
             [(5, 1), (6, 1)]
