@@ -237,7 +237,13 @@ class Piece:
         return possibles
     
 ################
-    ##valid positions 
+    ##valid positions repeat rook
+
+    def move_rook(self,from_row, from_col):
+        possible=(self.possible_positions_horizontal(from_row,from_col,1,8,1)+self.possible_positions_vertical(from_row,from_col,1,8,1)+self.possible_positions_horizontal(from_row,from_col,-1,-1,-1)+self.possible_positions_vertical(from_row,from_col,-1,-1,-1))
+        return possible
+
+
     # def valid_positions_straight(self,from_row,from_col,to_row,to_col):
     #     """
     #     Verifica si un movimiento es válido para el rook.
