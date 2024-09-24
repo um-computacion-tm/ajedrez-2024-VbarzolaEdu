@@ -9,25 +9,25 @@ class TestKing(unittest.TestCase):
     def test_possible_positions_vertical_down(self):
         board=Board(for_test=True)
         king=King("Black",board)
-        possibles=king.possible_positions_vertical(4,1,1,1,6)
+        possibles=king.possible_positions_one_move(4,1,1,0)
         self.assertEqual(possibles,[(5,1)])
 
     def test_possible_vertical_up(self):
         board=Board(for_test=True)
         king=King("White",board)
-        possibles=king.possible_positions_vertical(4,1,-1,-1,2)
+        possibles=king.possible_positions_one_move(4,1,-1,0)
         self.assertEqual(possibles,[(3,1)])
 
     def test_possible_positions_horizontal_right(self):
         board=Board(for_test=True)
         king=King("Black",board)
-        possibles=king.possible_positions_horizontal(1,4,1,6,1)
+        possibles=king.possible_positions_one_move(1,4,0,1)
         self.assertEqual(possibles,[(1,5)])
 
     def test_possible_positions_horizontal_left(self):
         board=Board(for_test=True)
         king=King("White",board)
-        possibles=king.possible_positions_horizontal(1,4,-1,2,-1)
+        possibles=king.possible_positions_one_move(1,4,0,-1)
         self.assertEqual(possibles,[(1,3)])
 
     # def test_possible_positions_diagonal_down_right(self):
