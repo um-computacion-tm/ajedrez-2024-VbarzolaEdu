@@ -30,29 +30,7 @@ class TestKing(unittest.TestCase):
         possibles=king.possible_positions_one_move(1,4,0,-1)
         self.assertEqual(possibles,[(1,3)])
 
-    # def test_possible_positions_diagonal_down_right(self):
-    #     board=Board(for_test=True)
-    #     king=King("Black",board)
-    #     possibles=king.possible_positions_diagonal_down_right(1,1)
-    #     self.assertEqual(possibles,[(2,2)])
-        
-    # def test_possible_positions_diagonal_down_left(self):
-    #     board=Board(for_test=True)
-    #     king=King("White",board)
-    #     possibles=king.possible_positions_diagonal_down_left(1,1)
-    #     self.assertEqual(possibles,[(2,0)])
-
-    # def test_possible_positions_diagonal_up_right(self):
-    #     board=Board(for_test=True)
-    #     king=King("Black",board)
-    #     possibles=king.possible_positions_diagonal_up_right(6,6)
-    #     self.assertEqual(possibles,[(5,7)])
-
-    # def test_possible_positions_diagonal_up_left(self):
-    #     board=Board(for_test=True)
-    #     king=King("White",board)
-    #     possibles=king.possible_positions_diagonal_up_left(6,6)
-    #     self.assertEqual(possibles,[(5,5)])
+  
 
 
       
