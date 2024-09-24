@@ -244,37 +244,6 @@ class Piece:
         return possible
 
 
-    # def valid_positions_straight(self,from_row,from_col,to_row,to_col):
-    #     """
-    #     Verifica si un movimiento es válido para el rook.
-
-    #     Args:
-    #         from_row (int): La fila de origen del rook.
-    #         from_col (int): La columna de origen del rook.
-    #         to_row (int): La fila de destino del rook.
-    #         to_col (int): La columna de destino del rook.
-
-    #     Returns:
-    #         bool: True si el movimiento es válido, False en caso contrario.
-    #     """
-    #     possible_positions=(self.possible_positions_horizontal(from_row,from_col,1,8,1)+self.possible_positions_vertical(from_row,from_col,1,1,8)+self.possible_positions_horizontal(from_row,from_col,-1,-1,-1)+self.possible_positions_vertical(from_row,from_col,-1,-1,-1))
-        
-    #     return (to_row, to_col) in possible_positions
-    
-    
-    # def valid_positions_diagonal(self,from_row,from_col,to_row,to_col):
-    #     """
-    #     Verifica si un movimiento es válido para el rook.
-
-    #     Args:
-    #         from_row (int): La fila de origen del rook.
-    #         from_col (int): La columna de origen del rook.
-    #         to_row (int): La fila de destino del rook.
-    #         to_col (int): La columna de destino del rook.
-
-    #     Returns:
-    #         bool: True si el movimiento es válido, False en caso contrario.
-    #     """
-    #     possible_positions=(self.possible_positions_diagonal(from_row,from_col,1,1)+self.possible_positions_diagonal(from_row,from_col,1,-1)+self.possible_positions_diagonal(from_row,from_col,-1,1)+self.possible_positions_diagonal(from_row,from_col,-1,-1))
-    #     return (to_row, to_col) in possible_positions
-        
+    def move_bishop(self,from_row, from_col):
+        possible=(self.possible_positions_diagonal(from_row,from_col,1,1)+self.possible_positions_diagonal(from_row,from_col,1,-1)+self.possible_positions_diagonal(from_row,from_col,-1,1)+self.possible_positions_diagonal(from_row,from_col,-1,-1))
+        return possible
