@@ -19,8 +19,13 @@ class Knight(Piece):
         Returns:
             bool: True si el movimiento es válido, False en caso contrario.
         """
-        possible_positions = (self.possible_positions_one_move(from_row, from_col,2,1)+ self.possible_positions_one_move(from_row, from_col,2,-1) + self.possible_positions_one_move(from_row, from_col,1,2) + self.possible_positions_one_move(from_row, from_col,1,-2) + self.possible_positions_one_move(from_row, from_col,-2,1) + self.possible_positions_one_move(from_row, from_col,-2,-1) + self.possible_positions_one_move(from_row, from_col,-1,2) + self.possible_positions_one_move(from_row, from_col,-1,-2))
-        return (to_row, to_col) in possible_positions
+        parameters = [
+            (2, 1), (2, -1), (1, 2), (1, -2),  # Movimientos en forma de L
+            (-2, 1), (-2, -1), (-1, 2), (-1, -2)  # Movimientos en forma de L
+        ]
+        return  self.valid_positions_for_one_move(from_row, from_col, to_row, to_col,parameters)
+        # possible_positions = (self.possible_positions_one_move(from_row, from_col,2,1)+ self.possible_positions_one_move(from_row, from_col,2,-1) + self.possible_positions_one_move(from_row, from_col,1,2) + self.possible_positions_one_move(from_row, from_col,1,-2) + self.possible_positions_one_move(from_row, from_col,-2,1) + self.possible_positions_one_move(from_row, from_col,-2,-1) + self.possible_positions_one_move(from_row, from_col,-1,2) + self.possible_positions_one_move(from_row, from_col,-1,-2))
+        # return (to_row, to_col) in possible_positions
 
     
 
