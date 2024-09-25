@@ -50,11 +50,11 @@ class TestPiece(unittest.TestCase):
 
     def test_valid_move_horse(self):
         board = Board(for_test=True)
-        horse = Knight("Black", board)
-        board.set_piece(1, 1, horse)
-        self.assertTrue(horse.valid_move_1(1,1,3,2))  # Movimiento en L válido
-        self.assertTrue(horse.valid_move_1(1, 1, 3, 0))  # Movimiento en L válido
-        self.assertFalse(horse.valid_move_1(1, 1, 3, 3))  # Movimiento inválido
+        knight = Knight("Black", board)
+        board.set_piece(1, 1, knight)
+        self.assertTrue(knight.valid_move_1(1,1,3,2))  # Movimiento en L válido
+        self.assertTrue(knight.valid_move_1(1, 1, 3, 0))  # Movimiento en L válido
+        self.assertFalse(knight.valid_move_1(1, 1, 3, 3))  # Movimiento inválido
 
     # def test_valid_linear_move(self):
     #     board = Board(for_test=True)
