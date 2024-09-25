@@ -11,9 +11,10 @@ class Rook(Piece):
     # def valid_positions_rook(self,from_row,from_col,to_row,to_col):
     #    return self.valid_positions_straight(from_row,from_col,to_row,to_col) 
 
-    def valid_positions_rook(self,from_row,from_col,to_row,to_col):
-        possible_positions=(self.move_rook(from_row,from_col))
+    # def valid_positions_rook(self,from_row,from_col,to_row,to_col):
+    #     possible_positions=(self.move_rook(from_row,from_col))
         
-        return (to_row, to_col) in possible_positions
-    
-    
+    #     return (to_row, to_col) in possible_positions
+
+    def valid_positions_rook(self,from_row,from_col,to_row,to_col):
+        return self.valid_positions_general(from_row,from_col,to_row,to_col)
