@@ -242,6 +242,61 @@ class Piece:
     #     return possible
     
 
+    # def valid_positions_general(self, from_row, from_col, to_row, to_col):
+    #     from juego.knight import Knight
+    #     from juego.king import King
+    #     from juego.pawn import Pawn
+    #     from juego.rook import Rook
+    #     from juego.bishop import Bishop
+    #     from juego.queen import Queen
+    #     """
+    #     Verifica si un movimiento es válido para cualquier pieza de ajedrez.
+
+    #     Args:
+    #         from_row (int): Fila de origen.
+    #         from_col (int): Columna de origen.
+    #         to_row (int): Fila de destino.
+    #         to_col (int): Columna de destino.
+
+    #     Returns:
+    #         bool: True si el movimiento es válido, False en caso contrario.
+    #     """
+
+    #     possibles = None
+
+    #     if isinstance(self, Rook):
+    #         possibles = (
+    #             self.move_rook(from_row, from_col)
+    #         )
+    #     elif isinstance(self, Bishop):
+
+    #         possibles = (
+    #             self.possible_positions_diagonal(from_row, from_col, 1, 1) +
+    #             self.possible_positions_diagonal(from_row, from_col, 1, -1) +
+    #             self.possible_positions_diagonal(from_row, from_col, -1, 1) +
+    #             self.possible_positions_diagonal(from_row, from_col, -1, -1)
+    #         )
+    #     elif isinstance(self, Queen):
+    #         possibles = (
+    #             self.move_rook(from_row, from_col) +
+    #             self.possible_positions_diagonal(from_row, from_col, 1, 1) +
+    #             self.possible_positions_diagonal(from_row, from_col, 1, -1) +
+    #             self.possible_positions_diagonal(from_row, from_col, -1, 1) +
+    #             self.possible_positions_diagonal(from_row, from_col, -1, -1)
+    #         )
+    #     elif isinstance(self,Knight):
+    #         possibles=(self.possible_positions_one_move(from_row,from_col,2,1)+
+    #                    self.possible_positions_one_move(from_row,from_col,2,-1)+
+    #                     self.possible_positions_one_move(from_row,from_col,1,2)+
+    #                     self.possible_positions_one_move(from_row,from_col,-1,2)+
+    #                     self.possible_positions_one_move(from_row,from_col,-2,1)+
+    #                     self.possible_positions_one_move(from_row,from_col,1,-2)+
+    #                     self.possible_positions_one_move(from_row,from_col,-2,-1)+
+    #                     self.possible_positions_one_move(from_row,from_col,-1,-2))
+    #     if possibles is not None:
+    #         return (to_row, to_col) in possibles
+   
+
     def valid_positions_general(self, from_row, from_col, to_row, to_col):
         from juego.knight import Knight
         from juego.king import King
@@ -262,39 +317,27 @@ class Piece:
             bool: True si el movimiento es válido, False en caso contrario.
         """
 
-        possibles = None
+        possibles = []
 
         if isinstance(self, Rook):
-            possibles = (
-                self.move_rook(from_row, from_col)
-            )
-        elif isinstance(self, Bishop):
-            possibles = (
-                self.possible_positions_diagonal(from_row, from_col, 1, 1) +
-                self.possible_positions_diagonal(from_row, from_col, 1, -1) +
-                self.possible_positions_diagonal(from_row, from_col, -1, 1) +
-                self.possible_positions_diagonal(from_row, from_col, -1, -1)
-            )
-        elif isinstance(self, Queen):
-            possibles = (
-                self.move_rook(from_row, from_col) +
-                self.possible_positions_diagonal(from_row, from_col, 1, 1) +
-                self.possible_positions_diagonal(from_row, from_col, 1, -1) +
-                self.possible_positions_diagonal(from_row, from_col, -1, 1) +
-                self.possible_positions_diagonal(from_row, from_col, -1, -1)
-            )
-        elif isinstance(self,Knight):
-            possibles=(self.possible_positions_one_move(from_row,from_col,2,1)+
-                       self.possible_positions_one_move(from_row,from_col,2,-1)+
-                        self.possible_positions_one_move(from_row,from_col,1,2)+
-                        self.possible_positions_one_move(from_row,from_col,-1,2)+
-                        self.possible_positions_one_move(from_row,from_col,-2,1)+
-                        self.possible_positions_one_move(from_row,from_col,1,-2)+
-                        self.possible_positions_one_move(from_row,from_col,-2,-1)+
-                        self.possible_positions_one_move(from_row,from_col,-1,-2))
+            straight = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+            possibles = [pos for dx, dy in straight for pos in self.possible_positions_linear(from_row, from_col, (dx, dy), None, 1)]
+        elif isinstance(self, Bishop) or isinstance(self, Queen):
+            diagonals = [(1, 1), (1, -1), (-1, 1), (-1, -1)]
+            possibles = [pos for dx, dy in diagonals for pos in self.possible_positions_diagonal(from_row, from_col, dx, dy)]
+
+            if isinstance(self, Queen):
+                possibles += self.move_rook(from_row, from_col)
+
+        # elif isinstance(self, Knight):
+        #     moves = [(2, 1), (2, -1), (1, 2), (1, -2), (-2, 1), (-2, -1), (-1, 2), (-1, -2)]
+        #     possibles = (self.possible_positions_one_move(from_row, from_col, dx, dy) for dx, dy in moves)
+
+        # Agregar más lógica aquí para King, Pawn si es necesario
+
         if possibles is not None:
             return (to_row, to_col) in possibles
-        
+
         
 
     # def valid_positions_for_one_move(self, from_row, from_col, to_row, to_col,parameters):
