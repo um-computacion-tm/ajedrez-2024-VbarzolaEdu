@@ -25,7 +25,7 @@ class TestRook(unittest.TestCase):
             possibles,
             [(5, 1), (6, 1), (7, 1)]
         )
-#Si la torre llega hasta posicion 1,1, no puede seguir a la 0,1.
+
     def test_move_vertical_asc(self):
         board = Board(for_test=True)
         rook = Rook("White", board)
@@ -34,7 +34,7 @@ class TestRook(unittest.TestCase):
             possibles,
             [(3, 1), (2, 1), (1, 1), (0, 1)]
         )
-#test raro. deberia poder ir a la 6,1 y 7,1??? o esta tomando otras piezas
+
     def test_move_vertical_desc_with_own_piece(self):
         board = Board(for_test=True)
         board.set_piece(6, 1, Pawn("White", board))
@@ -123,7 +123,6 @@ class TestRook(unittest.TestCase):
         possibles=rook.possible_positions_horizontal(4,7,-1,-1,-1)
         self.assertEqual(possibles,[(4,6),(4,5),(4,4),(4,3)])
 
-    #Test para validar que la torre no se mueva en diagonal
     def test_move_diagonal_desc(self):
         board = Board(for_test=True)
         rook=Rook("White",board)
@@ -138,7 +137,6 @@ class TestRook(unittest.TestCase):
         board.set_piece(2,1,rook)
         possible=rook.valid_positions_rook(2,1,4,1)
         self.assertEqual(possible,True)
-    #falta agregar casos de error and raise error
 
 if __name__ == '__main__':
     unittest.main()

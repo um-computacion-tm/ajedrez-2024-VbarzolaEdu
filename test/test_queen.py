@@ -8,12 +8,6 @@ class TestQueen(unittest.TestCase):
         queen=Queen("White",board)
         possible=queen.possible_positions_horizontal(4,4)
         self.assertEqual(possible,[(4,5),(4,6),(4,7),(4,3),(4,2),(4,1),(4,0)])
-
-    # def test_possible_positions_vertical(self):
-    #     board=Board(for_test=True)
-    #     queen=Queen("White",board)
-    #     possible=queen.possible_positions_vertical_(4,4)
-    #     self.assertEqual(possible,[(5,4),(6,4),(7,4),(3,4),(2,4),(1,4),(0,4)])
     
     def test_possible_positions_queen(self):
         board=Board(for_test=True)

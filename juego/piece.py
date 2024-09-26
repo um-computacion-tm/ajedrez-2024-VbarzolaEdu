@@ -206,17 +206,16 @@ class Piece:
 
     def possible_positions_one_move(self, row, col, kr, kc):
         """
-        Calcula las posiciones posibles para los movimiento diagonales en cualquier direccion del Rey.
+        Calcula las posiciones posibles para los movimientos de una unidad en cualquier direccion.
 
         Args:
             row (int): La fila actual del rey.
             col (int): La columna actual del rey.
             kr (int): La cantidad de filas a mover.
             kc (int): La cantidad de columnas a mover.
-            step (int): El paso a seguir.
 
         Returns:
-            list: Lista de tuplas con las posiciones posibles para el rey en diagonal.
+            list: Lista de tuplas con las posiciones posibles en un movimiento.
         """
         possibles = []
         new_row = row + kr
@@ -233,69 +232,19 @@ class Piece:
     ##valid positions repeat rook
 
     def move_rook(self,from_row, from_col):
+        """
+        Calcula las posiciones posibles para los movimientos del rook.
+
+        Args:   
+            from_row (int): La fila de origen.
+            from_col (int): La columna de origen.
+        
+        Returns:
+            list: Lista de tuplas con las posiciones posibles para el rook.
+        """
         possible=(self.possible_positions_horizontal(from_row,from_col,1,8,1)+self.possible_positions_vertical(from_row,from_col,1,8,1)+self.possible_positions_horizontal(from_row,from_col,-1,-1,-1)+self.possible_positions_vertical(from_row,from_col,-1,-1,-1))
         return possible
 
-
-    # def move_bishop(self,from_row, from_col):
-    #     possible=(self.possible_positions_diagonal(from_row,from_col,1,1)+self.possible_positions_diagonal(from_row,from_col,1,-1)+self.possible_positions_diagonal(from_row,from_col,-1,1)+self.possible_positions_diagonal(from_row,from_col,-1,-1))
-    #     return possible
-    
-
-    # def valid_positions_general(self, from_row, from_col, to_row, to_col):
-    #     from juego.knight import Knight
-    #     from juego.king import King
-    #     from juego.pawn import Pawn
-    #     from juego.rook import Rook
-    #     from juego.bishop import Bishop
-    #     from juego.queen import Queen
-    #     """
-    #     Verifica si un movimiento es válido para cualquier pieza de ajedrez.
-
-    #     Args:
-    #         from_row (int): Fila de origen.
-    #         from_col (int): Columna de origen.
-    #         to_row (int): Fila de destino.
-    #         to_col (int): Columna de destino.
-
-    #     Returns:
-    #         bool: True si el movimiento es válido, False en caso contrario.
-    #     """
-
-    #     possibles = None
-
-    #     if isinstance(self, Rook):
-    #         possibles = (
-    #             self.move_rook(from_row, from_col)
-    #         )
-    #     elif isinstance(self, Bishop):
-
-    #         possibles = (
-    #             self.possible_positions_diagonal(from_row, from_col, 1, 1) +
-    #             self.possible_positions_diagonal(from_row, from_col, 1, -1) +
-    #             self.possible_positions_diagonal(from_row, from_col, -1, 1) +
-    #             self.possible_positions_diagonal(from_row, from_col, -1, -1)
-    #         )
-    #     elif isinstance(self, Queen):
-    #         possibles = (
-    #             self.move_rook(from_row, from_col) +
-    #             self.possible_positions_diagonal(from_row, from_col, 1, 1) +
-    #             self.possible_positions_diagonal(from_row, from_col, 1, -1) +
-    #             self.possible_positions_diagonal(from_row, from_col, -1, 1) +
-    #             self.possible_positions_diagonal(from_row, from_col, -1, -1)
-    #         )
-    #     elif isinstance(self,Knight):
-    #         possibles=(self.possible_positions_one_move(from_row,from_col,2,1)+
-    #                    self.possible_positions_one_move(from_row,from_col,2,-1)+
-    #                     self.possible_positions_one_move(from_row,from_col,1,2)+
-    #                     self.possible_positions_one_move(from_row,from_col,-1,2)+
-    #                     self.possible_positions_one_move(from_row,from_col,-2,1)+
-    #                     self.possible_positions_one_move(from_row,from_col,1,-2)+
-    #                     self.possible_positions_one_move(from_row,from_col,-2,-1)+
-    #                     self.possible_positions_one_move(from_row,from_col,-1,-2))
-    #     if possibles is not None:
-    #         return (to_row, to_col) in possibles
-   
 
     def valid_positions_general(self, from_row, from_col, to_row, to_col):
         from juego.knight import Knight
@@ -305,7 +254,7 @@ class Piece:
         from juego.bishop import Bishop
         from juego.queen import Queen
         """
-        Verifica si un movimiento es válido para cualquier pieza de ajedrez.
+        Verifica si un movimiento es válido para el rook, queen y bishop de ajedrez.
 
         Args:
             from_row (int): Fila de origen.
@@ -329,35 +278,7 @@ class Piece:
             if isinstance(self, Queen):
                 possibles += self.move_rook(from_row, from_col)
 
-        # elif isinstance(self, Knight):
-        #     moves = [(2, 1), (2, -1), (1, 2), (1, -2), (-2, 1), (-2, -1), (-1, 2), (-1, -2)]
-        #     possibles = (self.possible_positions_one_move(from_row, from_col, dx, dy) for dx, dy in moves)
-
-        # Agregar más lógica aquí para King, Pawn si es necesario
-
         if possibles is not None:
             return (to_row, to_col) in possibles
 
         
-
-    # def valid_positions_for_one_move(self, from_row, from_col, to_row, to_col,parameters):
-    #     """
-    #     Verifica si un movimiento es válido para el rey.
-    #     Args:
-    #         from_row (int): La fila de origen del rey.
-    #         from_col (int): La columna de origen del rey.
-    #         to_row (int): La fila de destino del rey.
-    #         to_col (int): La columna de destino del rey.
-    #     Returns:
-    #         bool: True si el movimiento es válido, False en caso contrario.
-    #     """
-    #     # Definir todas las posibles direcciones para el rey
-    #     directions=[]
-    #     directions = parameters
-    #     # Inicializar una lista para almacenar todas las posiciones posibles
-    #     possible_positions = []
-    #     # Iterar sobre las direcciones y obtener las posibles posiciones
-    #     for d_row, d_col in directions:
-    #         possible_positions += self.possible_positions_one_move(from_row, from_col, d_row, d_col)
-    #     # Devolver si la posición de destino está en las posibles posiciones
-    #     return (to_row, to_col) in possible_positions
