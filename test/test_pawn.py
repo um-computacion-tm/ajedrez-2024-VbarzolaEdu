@@ -5,7 +5,7 @@ from juego.rook import Rook
 
 class TestRook(unittest.TestCase):
 
-    #aca se estan probando de forma unitaria todos los metodos aislados de pawn pero no hya test que compruebe todo juento. Deberia tener?
+    
     def test_str1(self):
         board=Board()
         pawn=Pawn("Black",board)

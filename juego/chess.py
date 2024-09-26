@@ -14,8 +14,6 @@ class Chess():
         """
         self.__board__= Board()
         self.__turn__= "White"
-        #metodo moverse
-        #conecta con cli y usuarios, es la class que engloba o conecta board y piece
        
     def is_playing():
         """
@@ -48,8 +46,6 @@ class Chess():
         """
         piece = self.__board__.get_piece(from_row, from_col)
 
-        # if not (0 <= from_row < 8 and 0 <= from_col < 8):
-        #  raise OriginInvalidMove()
         if not piece:
             raise EmptyPosition()
         if not (0<=to_row<8 and 0<=to_col<8):

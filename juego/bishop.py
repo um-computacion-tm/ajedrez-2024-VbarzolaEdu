@@ -13,20 +13,22 @@ class Bishop(Piece):
         else:
             return "♗"
     
-
-    # def valid_positions_bishop(self,from_row,from_col,to_row,to_col):
-    #     return self.valid_positions_diagonal(from_row,from_col,to_row,to_col)
-
-    # def valid_positions_bishop(self,from_row,from_col,to_row,to_col):
-    #     possible_positions=(self.move_bishop(from_row,from_col))
-    #     return (to_row, to_col) in possible_positions
-
-    # def valid_positions_bishop(self,from_row,from_col,to_row,to_col):
-    #    return self.valid_positions_general(from_row,from_col,to_row,to_col)
-    
     
 
     def valid_positions_bishop(self,from_row,from_col,to_row,to_col):
+
+        """
+        Valida el movimiento del bishop.
+
+        Args:
+            from_row (int): Fila de origen.
+            from_col (int): Columna de origen.
+            to_row (int): Fila de destino.
+            to_col (int): Columna de destino.
+
+        Returns:
+            bool: True si el movimiento es válido, False en caso contrario.
+        """
 
         return self.valid_positions_general(from_row,from_col,to_row,to_col)
         

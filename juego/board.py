@@ -47,7 +47,6 @@ class Board():
             for i in range(8):
                 self.__positions__[1][i]= Pawn("Black",self)
                 self.__positions__[6][i]= Pawn("White",self)
-        #metodo para obtener la posicion
 
     def __str__(self):
         """
@@ -112,7 +111,6 @@ class Board():
         """
         self.__positions__[row][col] = piece
 
-    #este metodo move hace que las piezas se muevan y coman entre ellas.
     def move(self, from_row, from_col, to_row, to_col):
         """
         Mueve una pieza de una posición a otra en el tablero.

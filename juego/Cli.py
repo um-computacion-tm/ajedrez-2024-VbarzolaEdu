@@ -1,6 +1,4 @@
-#aca tienen que estar los inpusts y prints
 
-##pygame para darle graficos al tablero
 from juego.chess import Chess
 from juego.exceptions import *
 
