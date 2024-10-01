@@ -7,12 +7,5 @@ WORKDIR /ajedrez-2024-VbarzolaEdu
 
 RUN pip install -r requirements.txt
 
-CMD ["sh", "-c", "coverage run -m unittest && coverage report -m && python main.py"]
+CMD ["sh", "-c", "coverage run -m unittest && coverage report -m && python -m juego.Cli"]
 
-# docker buildx build -t first-circleci-dqmdz-um .
-# docker run -i first-circleci-dqmdz-um
-
-##comandos
-#docker build -t python-alpine .
-#docker run -i "ajedrez"
-#docker images
