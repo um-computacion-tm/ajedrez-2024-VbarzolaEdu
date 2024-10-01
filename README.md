@@ -40,7 +40,7 @@ pip install -r requirements.txt
 
 3- Play on console:
 
-python3 game/cli.py
+python3 juego.Cli.py
 
 # Dockerfile
 commands:
